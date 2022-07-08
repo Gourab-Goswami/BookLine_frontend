@@ -1,0 +1,21 @@
+
+<h1>Books</h1>
+<ul *ngFor="let book of this.books">
+    <li>{{book.name}}</li><button (click)="updateBlock(book.id)">Update</button><button (click)="deleteBooks(book.id)">Delete</button>
+</ul>
+
+<input type="text" [(ngModel)]="name" placeholder="Book Name">
+<input type="number" [(ngModel)]="year" placeholder="Year">
+<input type="text" [(ngModel)]="authors" placeholder="Author">
+<input type="text" [(ngModel)]="summary" placeholder="Book Summary">
+
+<button (click)="addBooks()">ADD BOOKS</button>
+
+<div class="update-container">
+<h1>Update</h1>
+<input type="text" [(ngModel)]="name" placeholder="Book Name">
+<input type="number" [(ngModel)]="year" placeholder="Year">
+<input type="text" [(ngModel)]="authors" placeholder="Author">
+<input type="text" [(ngModel)]="summary" placeholder="Book Summary">
+<button (click)="updateBooks()">Update</button>
+</div>
