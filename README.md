@@ -6,7 +6,7 @@
 
 
 ### Sign up page
-![Screenshot (368)](https://user-images.githubusercontent.com/91311110/178520423-e2754451-722e-4336-b282-56803b6ae0a8.png
+![Screenshot (368)](https://user-images.githubusercontent.com/91311110/178520423-e2754451-722e-4336-b282-56803b6ae0a8.png)
 
 
 ### All books Page
