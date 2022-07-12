@@ -9,10 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  adminData = {
+    email:'user@gmail.com',
+    password:1234
+  }
   loginForm = new FormGroup({
     email: new FormControl(' '),
     password: new FormControl(' ')
   })
+  invalidInput:boolean = false;
   constructor(private formBuilder: FormBuilder, public userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
@@ -25,12 +30,17 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('email');
   }
   loginUser() {
+    if(this.adminData.email == this.loginForm.value.email && this.adminData.password == this.loginForm.value.password ){
     // setting flag and userName to localstorage
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('email', this.loginForm.value.email);
 
     // navigate to /books route after login
     this.router.navigate(['/books']);
+    }
+    else{
+    this.invalidInput = true;
+    }
   }
 
 
