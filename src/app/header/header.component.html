@@ -1,0 +1,30 @@
+<!-- Navigation Bar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" *ngIf="this.userService.userLoggedIn()">
+  <div class="container-fluid">
+    <!-- brand title -->
+    <a class="navbar-brand font-size3">BOOKCOMET</a>
+
+    <ul class="navbar-nav m-auto mb-2 mb-lg-0 text-center">
+
+      <!-- navbar profile option to show user profile -->
+      <li class="nav-item">
+        <a class="nav-link font-size2 text-light active" aria-current="page" routerLink="/profile">PROFILE</a>
+      </li>
+
+      <!-- navbar books option to show all books -->
+      <li class="nav-item">
+        <a class="nav-link font-size2 text-light active" routerLink="/books">BOOKS</a>
+      </li>
+
+    </ul>
+
+    <!-- to show username/email to the navbar -->
+    <span class="nav-link font-size1 text-light">
+      <i class="fa fa-user-circle-o"></i> {{this.userService.getUserData()}}
+    </span>
+
+    <!-- logout button -->
+    <a class="nav-link font-size2 text-light log-out" (click)="logOut()"><i class="fa fa-sign-out"
+        aria-hidden="true"></i>Log Out</a>
+  </div>
+</nav>

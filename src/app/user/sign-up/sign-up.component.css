@@ -1,0 +1,15 @@
+.background-radial-gradient {
+    background-color: hsl(218, 41%, 15%);
+    background-image: radial-gradient(circle, rgb(78, 78, 78) 0%, rgba(27,27,27,1) 100%),
+        radial-gradient(circle, rgba(20,135,168,1) 0%, rgba(27,27,27,1) 100%);
+  }
+.bg-glass {
+    background-color: hsla(0, 0%, 100%, 0.9) !important;
+    backdrop-filter: saturate(200%) blur(25px);
+  }
+  .login-btn:disabled{
+    background-color: #555;
+  }
+  small{
+    color:red;
+  }

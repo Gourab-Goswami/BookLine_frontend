@@ -1,0 +1,33 @@
+.font-size3 {
+    font-size: 3em;
+}
+
+.font-size2 {
+    font-size: 2em;
+}
+
+.font-size1 {
+    font-size: 1.5em;
+}
+.text-white{
+color: #fff;
+}
+.active{
+    padding: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.active:active {
+    border-bottom: 1px solid #fff;
+}
+
+.active:hover{
+    border-bottom: 1px solid #fff;
+}
+.log-out{
+    cursor: pointer;
+    border-left: 1px solid #fff;
+}
+.log-out:hover{
+    border-bottom: 1px solid #fff;
+}

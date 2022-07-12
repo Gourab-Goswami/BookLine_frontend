@@ -1,6 +1,61 @@
-.update-container{
+.top{
+    margin: 5rem;
+}
+.book-container {
+    display: flex;
+    flex-wrap: wrap;
+    position:absolute;
+    padding: 50px;
+    width: fit-content;
+    /* height: 37rem; */
+}
+ul {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    max-width: 60rem;
-    display:flex;
-    flex-direction: column;
+    margin: 18px;
+    padding: 2rem;
+    transition: .3s;
+    border-radius: 20px;
+    width: 20rem;
+    height: 30rem;
+}
+ul:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+.list {
+    
+    position: relative;
+    width: 16rem;
+    height: 22rem;
+}
+li {
+    list-style: none;
+    display: grid;
+    text-align: center;
+    padding-top: 1.8rem;
+}
+.bookTitle {
+    align-items: center;
+    border: 2px solid black;
+    min-height: 75%;
+    font-size: 2rem;
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+small {
+    color: red;
+    ;
+}
+.searchBox {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    padding-right: 25px;
+    float: right;
+}
+.search {
+    min-width: 20rem;
+    height: 3rem;
 }

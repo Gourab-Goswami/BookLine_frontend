@@ -1,21 +1,110 @@
+  <h1>Books</h1>
 
-<h1>Books</h1>
-<ul *ngFor="let book of this.books">
-    <li>{{book.name}}</li><button (click)="updateBlock(book.id)">Update</button><button (click)="deleteBooks(book.id)">Delete</button>
-</ul>
+<!-- Alert, add button and search box -->
+  <div class="top">
+    <div class="m-4">
+      <div class="alert alert-danger alert-dismissible fade show" *ngIf="isError">
+        <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i>{{errorMsg}}</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="isError=false"></button>
+      </div>
+    </div>
 
-<input type="text" [(ngModel)]="name" placeholder="Book Name">
-<input type="number" [(ngModel)]="year" placeholder="Year">
-<input type="text" [(ngModel)]="authors" placeholder="Author">
-<input type="text" [(ngModel)]="summary" placeholder="Book Summary">
+    <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addBook"><i class="fa fa-plus"
+        aria-hidden="true"></i>ADD BOOKS</button>
+        
+    <div class="searchBox">
+      <div class="form-outline">
+        <input type="search" id="form1" class="form-control search" placeholder="Search Books" [(ngModel)]="bookName" />
+      </div>
+      <button type="button" class="btn btn-dark" (click)="searchBooks()">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
 
-<button (click)="addBooks()">ADD BOOKS</button>
+<!-- books list -->
+  <div class="book-container">
+    <ul *ngFor="let book of books">
+      <div class="list">
+        <li routerLink="/bookdetails/{{book.id}}" class="bookTitle">{{book.name}}</li>
+        <li><strong>By {{book.authors}}</strong></li>
+        <li> <strong>Year: {{book.year}}</strong></li>
+        <li><button type="button" class="btn btn-dark delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
+            (click)="getDeleteBookId(book.id)">Delete</button>
+        </li>
+      </div>
+    </ul>
+  </div>
 
-<div class="update-container">
-<h1>Update</h1>
-<input type="text" [(ngModel)]="name" placeholder="Book Name">
-<input type="number" [(ngModel)]="year" placeholder="Year">
-<input type="text" [(ngModel)]="authors" placeholder="Author">
-<input type="text" [(ngModel)]="summary" placeholder="Book Summary">
-<button (click)="updateBooks()">Update</button>
-</div>
+  <!-- add book modal -->
+  <div class="modal fade" id="addBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Book</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)='addBooks()' [formGroup]='addBook' novalidate>
+            <!-- inout for Book Name -->
+            <div class="mb-3">
+              <label class="col-form-label">Book Name:</label>
+              <input type="text" formControlName="name" class="form-control">
+              <small *ngIf="addBook.get('name')!.hasError('required') && addBook.get('name')!.touched">
+                Book Name is required
+              </small>
+            </div>
+            <!-- inout for Year -->
+            <div class="mb-3">
+              <label class="col-form-label">Year:</label>
+              <select formControlName="year" class="form-control selectpicker" data-size="5"><option  *ngFor="let year of years">{{year}}</option></select>
+              <small *ngIf="addBook.get('year')!.hasError('required') && addBook.get('year')!.touched">
+                Year is required !
+              </small>
+            </div>
+            <!-- inout for Authors -->
+            <div class="mb-3">
+              <label class="col-form-label">Authors:</label>
+              <input type="text" formControlName="authors" class="form-control">
+              <small *ngIf="addBook.get('authors')!.hasError('required') && addBook.get('authors')!.touched">
+                Author's name is required !
+              </small>
+            </div>
+            <!-- inout for Summary -->
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Summary:</label>
+              <textarea formControlName="summary" class="form-control"></textarea>
+              <small *ngIf="addBook.get('summary')!.hasError('required') && addBook.get('summary')!.touched">
+                Summary is required !
+              </small>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-dark" [disabled]="addBook.invalid" data-bs-dismiss="modal">Add
+                Book</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Delete book Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          This book will be permanently deleted. Do you want to continue?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-primary" style="background-color: red;" data-bs-dismiss="modal"
+            (click)="deleteBooks(deleteBookId)">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
