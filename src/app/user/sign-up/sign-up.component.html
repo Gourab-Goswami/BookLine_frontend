@@ -18,7 +18,7 @@
             <div class="col-lg-6 mb-5 mb-lg-0 position-relative" *ngIf="!isSignUpSuccess">
                 <div class="card bg-glass">
                     <div class="card-body px-4 py-5 px-md-5">
-                        <form (ngSubmit)='signUpUser()' [formGroup]='loginForm' novalidate>
+                        <form (ngSubmit)='signUpUser()' [formGroup]='signupForm' novalidate>
                             <div class="row">
                                 <!-- First name input -->
                                 <div class="col-md-6 mb-4">
@@ -26,7 +26,7 @@
                                         <input formControlName='fname' type="text" id="form3Example1"
                                             class="form-control" placeholder="First Name" />
                                         <small
-                                            *ngIf="loginForm.get('fname')!.hasError('required') && loginForm.get('fname')!.touched">
+                                            *ngIf="signupForm.get('fname')!.hasError('required') && signupForm.get('fname')!.touched">
                                             First name is required !
                                         </small>
                                     </div>
@@ -37,7 +37,7 @@
                                         <input formControlName='lname' type="text" id="form3Example2"
                                             class="form-control" placeholder="Last Name" />
                                         <small
-                                            *ngIf="loginForm.get('lname')!.hasError('required') && loginForm.get('lname')!.touched">
+                                            *ngIf="signupForm.get('lname')!.hasError('required') && signupForm.get('lname')!.touched">
                                             Last name is required !
                                         </small>
                                     </div>
@@ -49,11 +49,11 @@
                                     placeholder="Enter Email" />
                                 <div>
                                     <small
-                                        *ngIf="loginForm.get('email')!.hasError('required') && loginForm.get('email')!.touched">
+                                        *ngIf="signupForm.get('email')!.hasError('required') && signupForm.get('email')!.touched">
                                         Email Address is required
                                     </small>
 
-                                    <small *ngIf="loginForm.get('email')!.hasError('pattern')">
+                                    <small *ngIf="signupForm.get('email')!.hasError('pattern')">
                                         Invalid Email Address !
                                     </small>
                                 </div>
@@ -65,7 +65,7 @@
                                     placeholder="Enter Password" />
                                 <div>
                                     <small
-                                        *ngIf=" !loginForm.get('password')!.valid && loginForm.get('password')!.touched">
+                                        *ngIf=" !signupForm.get('password')!.valid && signupForm.get('password')!.touched">
                                         Password is required! Should be more tha 4 and less than 10 characters
                                     </small>
                                 </div>
@@ -74,7 +74,7 @@
                             <!-- Submit button -->
                             <div class="text-center">
                                 <button type="submit" class="btn btn-dark btn-block mb-4 signup-btn"
-                                    [disabled]="loginForm.invalid">
+                                    [disabled]="signupForm.invalid">
                                     Sign Up
                                 </button><br>
                                 <span> Already have an account?</span><a routerLink="/login">Log In</a>
