@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { BookService } from '../services/book.service'
 import { catchError, of } from 'rxjs';
+import * as _ from 'underscore';
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
@@ -106,5 +107,15 @@ export class BooksComponent implements OnInit {
       }
     });
   };
+
+  // function to sort names
+  sortByName() {
+    this.books = _.sortBy(this.books, 'name');
+  }
+
+   // function to sort year
+   sortByYear() {
+    this.books = _.sortBy(this.books, 'year').reverse();
+  }
 
 }

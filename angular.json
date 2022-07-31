@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "06558a93-8c6a-48ad-a9d0-3bf00ca613e8"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,7 +34,8 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/font-awesome/css/font-awesome.css"             
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.js"]
+            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.js", 
+                        "node_modules/underscore/underscore.js"]
           },
           "configurations": {
             "production": {

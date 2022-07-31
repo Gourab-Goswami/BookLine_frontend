@@ -59,3 +59,7 @@ small {
     min-width: 20rem;
     height: 3rem;
 }
+.sort_btn{
+    margin-left: 150px; 
+    margin-top: -38px;
+}
