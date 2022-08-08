@@ -26,7 +26,7 @@
   <div class="book-container">
     <ul *ngFor="let book of books">
       <div class="list">
-        <li routerLink="/bookdetails/{{book.id}}" class="bookTitle">{{book.name}}</li>
+        <li routerLink="/bookdetails/{{book._id}}" class="bookTitle">{{book.name}}</li>
         <li><strong>By {{book.authors}}</strong></li>
         <li> <strong>Year: {{book.year}}</strong></li>
         <li><button type="button" class="btn btn-dark delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
@@ -77,6 +77,10 @@
               <small *ngIf="addBook.get('summary')!.hasError('required') && addBook.get('summary')!.touched">
                 Summary is required !
               </small>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Content:</label>
+              <textarea formControlName="content" class="form-control"></textarea>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

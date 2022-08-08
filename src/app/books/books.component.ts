@@ -19,6 +19,7 @@ export class BooksComponent implements OnInit {
     year: new FormControl(' '),
     authors: new FormControl(' '),
     summary: new FormControl(' '),
+    content: new FormControl(' '),
   })
 
 
@@ -29,7 +30,8 @@ export class BooksComponent implements OnInit {
       name: [null, [Validators.required, Validators.maxLength(50)]],
       year: [null, [Validators.required]],
       authors: [null, [Validators.required, Validators.maxLength(100)]],
-      summary: [null, [Validators.required]]
+      summary: [null, [Validators.required]],
+      content: []
     });
 
     // getting optons for year input
