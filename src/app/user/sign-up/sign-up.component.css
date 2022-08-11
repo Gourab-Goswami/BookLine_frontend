@@ -13,3 +13,29 @@
   small{
     color:red;
   }
+  .scrool-btn {
+    position: absolute;
+    min-width: 82%;
+    background-color: #fff;
+    list-style: none;
+    height:200px;
+    overflow-y: scroll;
+    text-align: left;
+    padding: 10px 10px 0 10px;
+    border: 2px solid hsl(218, 81%, 75%);
+    z-index: 1;
+  }
+  .checked{
+    padding:0 5px 0 5px;
+    font-size: xx-small;
+  }
+  .tags{
+    display: block;
+  }
+  .remove-tag{
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    box-shadow: none;
+    border: none;
+  }

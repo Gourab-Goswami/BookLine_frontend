@@ -115,6 +115,28 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!-- preferred genre -->
+                            <div class="form-outline mb-4">
+                                <div class="form-outline">
+                                     <button class="form-select" type="button" (click)="isGenreOn = !isGenreOn">
+                                        <strong>Preferred Genre</strong>
+                                    </button> 
+                                    <div class="tags">
+                                        <span *ngFor="let option of checkedPreferredGenre" class="checked">
+                                            {{option}}
+                                            <button class="remove-tag" (click)="deleteChoice(option)">X</button>
+                                        </span>
+                                    </div>                              
+                                    <div class="scrool-btn" *ngIf="isGenreOn">
+                                        <div *ngFor="let genre of bookGenre">                                               
+                                            <input type="checkbox" [value]="genre" (change)="onCheckboxChange($event)" [checked]="checkboxCheck(genre)"/>
+                                            {{genre}}
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
 
                             <!-- Email input -->
                             <div class="form-outline mb-4">
