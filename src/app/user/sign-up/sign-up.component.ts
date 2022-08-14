@@ -18,6 +18,7 @@ export class SignUpComponent implements OnInit {
     age: new FormControl(' '),
     education: new FormControl(' '),
     education_dep: new FormControl(' '),
+    uname: new FormControl(' '),
     email: new FormControl(' '),
     password: new FormControl(' ')
   });
@@ -36,7 +37,8 @@ export class SignUpComponent implements OnInit {
       education: ['', [Validators.required]],
       education_dep: [null, [Validators.required]],
       preferred_genre: this.formBuilder.array([], [Validators.required]),
-      email: [null,[Validators.required,Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      uname: [null,[Validators.required,Validators.pattern("^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$")]],
+      email: [null,[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       password: [null, [Validators.required,Validators.minLength(4), Validators.maxLength(10)]]
     });
   }
