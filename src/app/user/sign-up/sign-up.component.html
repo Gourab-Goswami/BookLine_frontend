@@ -138,6 +138,22 @@
                                 </div>
                             </div>
 
+                            <!-- username input -->
+                            <div class="form-outline mb-4">
+                                <input formControlName='uname' class="form-control" type="text"
+                                    placeholder="Enter username" />
+                                <div>
+                                    <small
+                                        *ngIf="signupForm.get('uname')!.hasError('required') && signupForm.get('uname')!.touched">
+                                        Username Address is required
+                                    </small>
+
+                                    <small *ngIf="signupForm.get('uname')!.hasError('pattern')">
+                                        Username must not start or end with special characters or less than 5 characters!
+                                    </small>
+                                </div>
+                            </div>
+
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                                 <input formControlName='email' class="form-control" type="text"
