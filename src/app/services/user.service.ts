@@ -15,11 +15,17 @@ export class UserService {
     return this.http.post(Url,data)
   }
 
-  //API call for user login [TO DO]
+  //API call for user login
   userLogin(data:any){
     const Url=environment.userUrl+'/logIn';
     return this.http.post(Url,data)
   }
+
+  //API call for user details
+  getUserDetails(id:any){
+    return this.http.get(environment.userUrl+'/'+id);
+  }
+  
   // get flag from localStorage to check if user is logged in 
   userLoggedIn(){
     return localStorage.getItem('isLoggedIn');
