@@ -33,7 +33,7 @@ export class UserService {
  
   // get user email from localStorage
   getUserData(){
-    return localStorage.getItem('email');
+    return localStorage.getItem('username');
   }
 
   // removing data from localStorage and navigate to login page after logout

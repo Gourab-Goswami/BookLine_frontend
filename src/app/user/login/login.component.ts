@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
     });
     // removing data from localStorage if user is in logIn page
     localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('email');
+    localStorage.removeItem('username');
+    localStorage.removeItem('id');
   }
   loginUser() {
     // if(this.adminData.email == this.loginForm.value.email && this.adminData.password == this.loginForm.value.password ){
@@ -53,6 +54,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/books']);
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('id', res._id);
+        localStorage.setItem('username', res.uname);
       }
     });
   }
