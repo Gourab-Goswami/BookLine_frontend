@@ -10,9 +10,9 @@ export class BookService {
 
   constructor(private http: HttpClient) { }
 
-  // http get request for fetching all the books
-  getBooks():Observable<any>{
-    return this.http.get(environment.bookUrl);
+  // http get request for fetching all the books for publisher
+  getBooks(publisher:any):Observable<any>{
+    return this.http.post(environment.bookUrl,publisher);
   }
 
   // http get request for fetching particular book details by id

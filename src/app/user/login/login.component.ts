@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -27,21 +28,36 @@ export class LoginComponent implements OnInit {
     });
     // removing data from localStorage if user is in logIn page
     localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('email');
+    localStorage.removeItem('username');
+    localStorage.removeItem('id');
   }
   loginUser() {
-    if(this.adminData.email == this.loginForm.value.email && this.adminData.password == this.loginForm.value.password ){
-    // setting flag and userName to localstorage
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('email', this.loginForm.value.email);
+    // if(this.adminData.email == this.loginForm.value.email && this.adminData.password == this.loginForm.value.password ){
+    // // setting flag and userName to localstorage
+    // localStorage.setItem('isLoggedIn', 'true');
+    // localStorage.setItem('email', this.loginForm.value.email);
 
-    // navigate to /books route after login
-    this.router.navigate(['/books']);
-    }
-    else{
-    this.invalidInput = true;
-    }
+    // // navigate to /books route after login
+    // this.router.navigate(['/books']);
+    // }
+    // else{
+    // this.invalidInput = true;
+    // }
+    
+    this.userService.userLogin(this.loginForm.value).pipe(
+      catchError((error) => {
+        console.log('error message',error.message);
+        return of(false);
+      })).subscribe((res:any) => {
+      if(res){
+        // naviagete to books page after successful log in
+        this.router.navigate(['/books']);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('id', res._id);
+        localStorage.setItem('username', res.uname);
+      }
+    });
   }
-
+  
 
 }

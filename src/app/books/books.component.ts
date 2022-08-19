@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { BookService } from '../services/book.service'
 import { catchError, of } from 'rxjs';
+
+import { BookService } from '../services/book.service'
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
@@ -20,10 +22,11 @@ export class BooksComponent implements OnInit {
     authors: new FormControl(' '),
     summary: new FormControl(' '),
     content: new FormControl(' '),
-  })
+  });
+  userName : any;
 
 
-  constructor(private formBuilder: FormBuilder, public bookService: BookService) { }
+  constructor(private formBuilder: FormBuilder, public bookService: BookService, private userService: UserService) { }
 
   ngOnInit(): void {
     this.addBook = this.formBuilder.group({
@@ -33,13 +36,13 @@ export class BooksComponent implements OnInit {
       summary: [null, [Validators.required]],
       content: []
     });
-
+    this.userName = this.userService.getUserData();
     // getting optons for year input
     for(let i: number = 2022; i >= 1900; i--){
       this.years.push(i);
     };
     // fetching all the books
-    this.bookService.getBooks().pipe(
+    this.bookService.getBooks({publisher:this.userName}).pipe(
       catchError((error) => {
         this.errorMsg = 'Something went wrong! Could not fetch books!';
         this.isError = true;
@@ -56,6 +59,7 @@ export class BooksComponent implements OnInit {
     // split the inputs for authors and assign to the field 
     this.addBook.value.authors = this.addBook.value.authors.split(',');
     this.addBook.value.name = this.addBook.value.name.toLowerCase();
+    this.addBook.value.publisher = this.userName;
     // adding book
     this.bookService.addBooks(this.addBook.value).pipe(
       catchError((error) => {

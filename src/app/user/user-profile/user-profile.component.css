@@ -1,26 +1,10 @@
-body {
-	background-color: #f5f7fa;
-}
-.container{
-    margin-top: 8rem;
-}
-.card{
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-}
-.testimonial-card .card-up {
-  height: 120px;
-  overflow: hidden;
-}
-
-.aqua-gradient {
-  background: linear-gradient(40deg, #2096ff, #05ffa3) !important;
-  height: 60px;
-}
-
-.testimonial-card .avatar {
-  width: 80%;
-  margin-top: -60px;
-  overflow: hidden;
-  text-align: center;
-  font-size: 4em;
-}
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #fbc2eb;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1))
+  }
