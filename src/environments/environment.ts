@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  baseUrl : 'https://publishing-house-service.herokuapp.com/api/v1/books/',
   // userUrl : 'http://localhost:8000/user',
   // bookUrl : 'http://localhost:8000/books'
   userUrl : 'https://bookline1.herokuapp.com/user',
