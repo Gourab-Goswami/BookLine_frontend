@@ -12,7 +12,7 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
 
 const routes: Routes = [
   //setting "/login" path as default
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
 
