@@ -11,6 +11,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { HeaderComponent } from './header/header.component';
+import { LibraryComponent } from './library/library.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HeaderComponent } from './header/header.component';
     SignUpComponent,
     UserProfileComponent,
     HeaderComponent,
+    LibraryComponent,
   ],
   imports: [
     BrowserModule,

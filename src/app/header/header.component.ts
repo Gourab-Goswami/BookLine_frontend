@@ -7,10 +7,15 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+isPublisher!:Boolean;
   constructor( public userService:UserService) { }
 
   ngOnInit(): void {
+    let userStatus = localStorage.getItem('status');
+    if(userStatus == 'publisher') {
+      this.isPublisher = true;
+    }
+    
   } 
 
   logOut(){

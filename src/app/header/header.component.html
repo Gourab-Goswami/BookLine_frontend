@@ -12,14 +12,17 @@
       </li>
 
       <!-- navbar books option to show all books -->
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isPublisher">
         <a class="nav-link font-size2 text-light active" routerLink="/books">BOOKS</a>
+      </li>
+      <li class="nav-item" *ngIf="!isPublisher">
+        <a class="nav-link font-size2 text-light active" routerLink="/library">BOOKS</a>
       </li>
 
     </ul>
 
     <!-- to show username/email to the navbar -->
-    <span class="nav-link font-size1 text-light">
+    <span class="nav-link font-size1 text-light" routerLink="/profile">
       <i class="fa fa-user-circle-o"></i> {{this.userService.getUserData()}}
     </span>
 

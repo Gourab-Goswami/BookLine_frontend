@@ -51,10 +51,16 @@ export class LoginComponent implements OnInit {
       })).subscribe((res:any) => {
       if(res){
         // naviagete to books page after successful log in
-        this.router.navigate(['/books']);
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('id', res._id);
         localStorage.setItem('username', res.uname);
+        localStorage.setItem('status', res.status);
+        if(res.status == 'publisher'){
+          this.router.navigate(['/books']);
+        }
+        if(res.status == 'reader'){
+          this.router.navigate(['/library']);
+        }
       }
     });
   }

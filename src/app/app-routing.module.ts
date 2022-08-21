@@ -7,7 +7,7 @@ import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { BooksComponent } from './books/books.component';
 import { BookDetailsComponent } from './book-details/book-details.component'
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
-
+import { LibraryComponent } from './library/library.component';
 
 
 const routes: Routes = [
@@ -19,7 +19,8 @@ const routes: Routes = [
   //added guard to the paths so that without login these paths can't be accessed
   { path: 'profile', component: UserProfileComponent,canActivate: [AuthGuard]},
   { path: 'books', component: BooksComponent ,canActivate: [AuthGuard]},
-  { path: 'bookdetails/:id', component: BookDetailsComponent,canActivate: [AuthGuard] }
+  { path: 'bookdetails/:id', component: BookDetailsComponent,canActivate: [AuthGuard] },
+  { path: 'library', component: LibraryComponent },
 ];
 
 @NgModule({
