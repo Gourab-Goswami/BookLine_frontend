@@ -61,7 +61,7 @@
   width: 100%;
 }
 .list .grid-card .card-body .title {
-  min-width: 25%;
+  width: 25%;
   position: absolute;
   margin: 1.5rem;
 }

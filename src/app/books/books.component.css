@@ -48,14 +48,10 @@ small {
     ;
 }
 .searchBox {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    padding-right: 25px;
+    display: inline-flex;
     float: right;
 }
-.search {
+/* .search {
     min-width: 20rem;
     height: 3rem;
-}
+} */

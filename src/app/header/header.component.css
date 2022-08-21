@@ -1,21 +1,19 @@
 .font-size3 {
-    font-size: 3em;
+    font-size: 3vw;
 }
 
 .font-size2 {
-    font-size: 2em;
+    font-size: 2vw;
 }
 
 .font-size1 {
-    font-size: 1.5em;
+    font-size: 1.5vw;
 }
 .text-white{
 color: #fff;
 }
 .active{
-    padding: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin:1vw;
 }
 .active:active {
     border-bottom: 1px solid #fff;
