@@ -1,0 +1,74 @@
+.gradient-custom-2 {
+    /* fallback for old browsers */
+    background: #fbc2eb;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1))
+    }
+.left-btn {
+  margin-left: 2rem;
+}
+.grid .grid-card {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  width: 18rem;
+  margin: 2rem;
+  transition: 0.3s;
+}
+.grid .grid-card:hover{
+    cursor: pointer;
+    transform: scale(1.09);
+}
+.grid .grid-card .card-body {
+  height: 20rem;
+}
+.grid .grid-card .card-body .title {
+  text-align: center;
+  border: 2px solid black;
+  min-height: 66%;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+.list {
+  display: flow-root;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 96.5%;
+  align-content: center;
+  justify-content: center;
+}
+.list .grid-card {
+  min-width: 100%;
+  margin: 2rem;
+}
+.list .grid-card:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+}
+.list .grid-card .card-body {
+  margin-left: 2rem;
+  text-align: center;
+  width: 100%;
+}
+.list .grid-card .card-body .title {
+  min-width: 25%;
+  position: absolute;
+  margin: 1.5rem;
+}
+.list .grid-card .card-body .book-body {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  padding: 3rem 0 3rem 9rem;
+  height: 100%;
+}

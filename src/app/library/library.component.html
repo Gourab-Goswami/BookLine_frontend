@@ -1,0 +1,60 @@
+<section class="gradient-custom-2" >
+  <p>LIBRARY</p>
+  <div style="margin-top: 8rem">
+    <div class="alert alert-danger alert-dismissible fade show" *ngIf="isError">
+      <h4 class="alert-heading">
+        <i class="bi-exclamation-octagon-fill"></i>{{ errorMsg }}
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        (click)="isError = false"
+      ></button>
+    </div>
+  </div>
+  <button (click)="myFunction()" class="btn btn-dark left-btn">
+    <span *ngIf="!isList">View List</span>
+    <span *ngIf="isList">View Grid</span>
+  </button>
+
+  <div class="row pb-5 mb-4">
+    <div id="myDIV" class="grid">
+      <!-- Card-->
+      <div class="grid-card" *ngFor="let book of books">
+        <div class="card rounded shadow-sm border-2">
+          <div class="card-body p-4">
+            <div class="title">
+              <h1>{{ book.name }}</h1>
+            </div>
+            <div class="book-body">
+              <h5>
+                <a class="text-dark">{{ book.name }}</a>
+              </h5>
+              <p class="small text-muted font-italic">
+                Authors: {{ book.authors }}
+              </p>
+              <ul class="list-inline small">
+                <li class="list-inline-item m-0">
+                  <i class="fa fa-star text-success"></i>
+                </li>
+                <li class="list-inline-item m-0">
+                  <i class="fa fa-star text-success"></i>
+                </li>
+                <li class="list-inline-item m-0">
+                  <i class="fa fa-star text-success"></i>
+                </li>
+                <li class="list-inline-item m-0">
+                  <i class="fa fa-star text-success"></i>
+                </li>
+                <li class="list-inline-item m-0">
+                  <i class="fa fa-star-o text-success"></i>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
