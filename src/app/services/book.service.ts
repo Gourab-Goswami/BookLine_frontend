@@ -39,4 +39,9 @@ export class BookService {
   searchBooks(name:string):Observable<any>{
     return this.http.get(environment.bookUrl+'?name='+name);
   }
+
+  // http get request for fetching all the books for reader
+  getLibraryBooks():Observable<any>{
+    return this.http.get(environment.bookUrl+'/lib');
+  }
 }
