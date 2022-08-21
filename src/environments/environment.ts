@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  userUrl : 'http://localhost:8000/user',
-  bookUrl : 'http://localhost:8000/books'
-  // userUrl : 'https://bookline1.herokuapp.com/user',
-  // bookUrl : 'https://bookline1.herokuapp.com/books'
+  // userUrl : 'http://localhost:8000/user',
+  // bookUrl : 'http://localhost:8000/books'
+  userUrl : 'https://bookline1.herokuapp.com/user',
+  bookUrl : 'https://bookline1.herokuapp.com/books'
 };
 
 /*

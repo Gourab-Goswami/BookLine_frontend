@@ -29,6 +29,7 @@
   border: 2px solid black;
   min-height: 66%;
   font-size: 1.5rem;
+  overflow: hidden;
   text-transform: uppercase;
 }
 .grid {
