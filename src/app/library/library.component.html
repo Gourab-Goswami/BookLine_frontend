@@ -1,6 +1,7 @@
-<section class="gradient-custom-2" >
+
   <p>LIBRARY</p>
-  <div style="margin-top: 8rem">
+  <div class="gradient-custom-2" >
+  <div style="margin-top: 6rem">
     <div class="alert alert-danger alert-dismissible fade show" *ngIf="isError">
       <h4 class="alert-heading">
         <i class="bi-exclamation-octagon-fill"></i>{{ errorMsg }}
@@ -13,7 +14,7 @@
       ></button>
     </div>
   </div>
-  <button (click)="myFunction()" class="btn btn-dark left-btn">
+  <button (click)="myFunction()" class="btn btn-dark left-btn mt-5">
     <span *ngIf="!isList">View List</span>
     <span *ngIf="isList">View Grid</span>
   </button>
@@ -57,4 +58,4 @@
       </div>
     </div>
   </div>
-</section>
+</div>
