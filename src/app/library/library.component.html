@@ -1,6 +1,5 @@
-
-  <p>LIBRARY</p>
-  <div class="gradient-custom-2" >
+<p>LIBRARY</p>
+<div class="gradient-custom-2">
   <div style="margin-top: 6rem">
     <div class="alert alert-danger alert-dismissible fade show" *ngIf="isError">
       <h4 class="alert-heading">
@@ -14,7 +13,7 @@
       ></button>
     </div>
   </div>
-  <button (click)="myFunction()" class="btn btn-dark left-btn mt-5">
+  <button (click)="changeView()" class="btn btn-dark left-btn mt-5">
     <span *ngIf="!isList">View List</span>
     <span *ngIf="isList">View Grid</span>
   </button>
@@ -32,26 +31,6 @@
               <h5>
                 <a class="text-dark">{{ book.name }}</a>
               </h5>
-              <p class="small text-muted font-italic">
-                Authors: {{ book.authors }}
-              </p>
-              <ul class="list-inline small">
-                <li class="list-inline-item m-0">
-                  <i class="fa fa-star text-success"></i>
-                </li>
-                <li class="list-inline-item m-0">
-                  <i class="fa fa-star text-success"></i>
-                </li>
-                <li class="list-inline-item m-0">
-                  <i class="fa fa-star text-success"></i>
-                </li>
-                <li class="list-inline-item m-0">
-                  <i class="fa fa-star text-success"></i>
-                </li>
-                <li class="list-inline-item m-0">
-                  <i class="fa fa-star-o text-success"></i>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
