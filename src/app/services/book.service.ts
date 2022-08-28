@@ -55,4 +55,9 @@ export class BookService {
     const Url = environment.baseUrl + '/favourites/' + id;
     return this.http.post(Url, data);
   }
+
+  deleteFavourites(bookId:any,userId:any){
+    const Url = environment.baseUrl + '/favourites/' + userId;
+    return this.http.patch(Url,{bookId});
+  }
 }

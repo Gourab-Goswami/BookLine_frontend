@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { ActivatedRoute } from '@angular/router';
 import { catchError, of } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-book-details',
@@ -18,7 +19,7 @@ export class BookDetailsComponent implements OnInit {
   successMsg = '';
   isSuccess = false;
 
-  constructor(public bookService: BookService, public route: ActivatedRoute) { }
+  constructor(public bookService: BookService, public route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     // getting book id from route parameter
@@ -79,6 +80,10 @@ export class BookDetailsComponent implements OnInit {
         this.loadingBook = false;
       }
     });
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

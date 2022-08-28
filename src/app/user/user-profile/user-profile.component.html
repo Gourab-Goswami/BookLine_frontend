@@ -27,8 +27,8 @@
               </button>
             </div>
             <div class="ms-3" style="margin-top: 100px">
-              <h3>{{ userDetails.fname }} {{ userDetails.lname }}</h3>
-              <h5>{{ userDetails.uname }}</h5>
+              <h3>{{ userDetails?.fname }} {{ userDetails?.lname }}</h3>
+              <h5>{{ userDetails?.uname }}</h5>
             </div>
           </div>
           <div class="p-4 text-black" style="background-color: #f8f9fa">
@@ -44,27 +44,27 @@
               <p class="lead fw-normal mb-1">About</p>
               <div class="p-4" style="background-color: #f8f9fa">
                 <p class="font-italic mb-1">
-                  <strong>Age:</strong> {{ userDetails.age }}
+                  <strong>Age:</strong> {{ userDetails?.age }}
                 </p>
                 <p class="font-italic mb-1">
-                  <strong>Gender:</strong> {{ userDetails.gender }}
+                  <strong>Gender:</strong> {{ userDetails?.gender }}
                 </p>
                 <p class="font-italic mb-1">
-                  <strong>Education:</strong> {{ userDetails.education }}
+                  <strong>Education:</strong> {{ userDetails?.education }}
                 </p>
                 <p class="font-italic mb-1">
                   <strong>Education Stream:</strong>
-                  {{ userDetails.education_dep }}
+                  {{ userDetails?.education_dep }}
                 </p>
                 <p class="font-italic mb-1">
-                  <strong>Email:</strong> {{ userDetails.email }}
+                  <strong>Email:</strong> {{ userDetails?.email }}
                 </p>
               </div>
             </div>
             <div class="d-flex justify-content-between align-items-center mb-4">
               <p class="lead fw-normal mb-0">Favourite books</p>
               <p class="mb-0 ">
-                <a *ngIf="limit == 4" class="text-muted pointer-hand" (click)="limit = favourites.length">Show all</a>
+                <a *ngIf="limit <= 4" class="text-muted pointer-hand" (click)="limit = favourites.length">Show all</a>
                 <a *ngIf="limit > 4" class="text-muted pointer-hand" (click)="limit = 4">Show less</a>
               </p>
             </div>
@@ -80,8 +80,8 @@
                     <p><strong>Name:</strong> {{ book.bookName }}</p>
                     <p><strong>Ratings:</strong> {{ book.bookRating }}</p>
                     <p><strong>Authors:</strong> {{ book.bookAuthors }}</p>
-                    <button><i class="fa fa-book" aria-hidden="true"></i></button>
-                    <button><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    <button routerLink="/bookdetails/{{book.bookId}}"><i class="fa fa-book" aria-hidden="true"></i></button>
+                    <button (click)="deleteFavourites(book.bookId)"><i class="fa fa-trash" aria-hidden="true"></i></button>
                   </div>
                 </div>
               </div>

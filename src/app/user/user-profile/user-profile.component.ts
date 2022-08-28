@@ -12,6 +12,7 @@ export class UserProfileComponent implements OnInit {
   userDetails!: any;
   favourites: any = [];
   limit = 4;
+  userId: any;
 
   constructor(
     public userService: UserService,
@@ -20,9 +21,9 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     // fetching user details
-    let id = localStorage.getItem('id');
+    this.userId = localStorage.getItem('id');
     this.userService
-      .getUserDetails(id)
+      .getUserDetails(this.userId)
       .pipe(
         catchError((error) => {
           console.log(error.message);
@@ -32,10 +33,14 @@ export class UserProfileComponent implements OnInit {
       .subscribe((res) => {
         if (res) this.userDetails = res;
       });
-      
+
+    this.getFavourites();
+  }
+
+  getFavourites() {
     //fetching favourite books
     this.bookService
-      .getFavourites(id)
+      .getFavourites(this.userId)
       .pipe(
         catchError((error) => {
           console.log(error);
@@ -45,6 +50,22 @@ export class UserProfileComponent implements OnInit {
       .subscribe((res) => {
         if (res) {
           this.favourites = res;
+        }
+      });
+  }
+
+  deleteFavourites(bookId: any) {
+    this.bookService
+      .deleteFavourites(bookId,this.userId)
+      .pipe(
+        catchError((error) => {
+          console.log(error);
+          return of(false);
+        })
+      )
+      .subscribe((res) => {
+        if (res) {
+          this.getFavourites();
         }
       });
   }

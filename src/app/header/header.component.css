@@ -21,6 +21,7 @@ color: #fff;
 
 .active:hover{
     border-bottom: 1px solid #fff;
+    margin-bottom: -1px;
 }
 .log-out{
     cursor: pointer;
