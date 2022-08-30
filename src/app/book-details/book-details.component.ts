@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { ActivatedRoute } from '@angular/router';
 import { catchError, of } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-book-details',
@@ -17,12 +18,17 @@ export class BookDetailsComponent implements OnInit {
   isError = false;
   successMsg = '';
   isSuccess = false;
+  userStatus:any;
+  isRead!:Boolean;
 
-  constructor(public bookService: BookService, public route: ActivatedRoute) { }
+  constructor(public bookService: BookService, public route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     // getting book id from route parameter
     let bookId = this.route.snapshot.paramMap.get('id');
+
+    //getting user status from localStorage
+    this.userStatus = localStorage.getItem('status');
 
     // fetching book details
     this.bookService.getBookDetails(bookId).pipe(
@@ -79,6 +85,10 @@ export class BookDetailsComponent implements OnInit {
         this.loadingBook = false;
       }
     });
+  }
+
+  goBack(){
+    this.location.back();
   }
 
 }

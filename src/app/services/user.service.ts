@@ -30,6 +30,10 @@ export class UserService {
   userLoggedIn(){
     return localStorage.getItem('isLoggedIn');
   }
+
+  localUserStatus(){
+    return localStorage.getItem('status');
+  }
  
   // get user email from localStorage
   getUserData(){

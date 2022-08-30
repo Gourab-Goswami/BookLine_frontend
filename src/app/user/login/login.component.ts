@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     email: new FormControl(' '),
     password: new FormControl(' ')
   })
+  isLoading!:Boolean;
   invalidInput:boolean = false;
   constructor(private formBuilder: FormBuilder, public userService: UserService, private router: Router) { }
 
@@ -32,18 +33,7 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('id');
   }
   loginUser() {
-    // if(this.adminData.email == this.loginForm.value.email && this.adminData.password == this.loginForm.value.password ){
-    // // setting flag and userName to localstorage
-    // localStorage.setItem('isLoggedIn', 'true');
-    // localStorage.setItem('email', this.loginForm.value.email);
-
-    // // navigate to /books route after login
-    // this.router.navigate(['/books']);
-    // }
-    // else{
-    // this.invalidInput = true;
-    // }
-    
+    this.isLoading = true;
     this.userService.userLogin(this.loginForm.value).pipe(
       catchError((error) => {
         console.log('error message',error.message);
@@ -61,9 +51,15 @@ export class LoginComponent implements OnInit {
         if(res.status == 'reader'){
           this.router.navigate(['/library']);
         }
+        this.hideloader();
       }
     });
   }
   
-
+  hideloader() {
+    let loading = document.getElementById('loading');
+    if(loading){
+      loading.style.display = 'none';
+    }   
+}
 }

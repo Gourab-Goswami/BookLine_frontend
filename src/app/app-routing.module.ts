@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
+import { ReaderAuthGuard } from './guard/reader-auth.guard'
+import { PublisherAuthGuard } from './guard/publisher-auth.guard';
 
 import { LoginComponent } from './user/login/login.component';
 import { SignUpComponent } from './user/sign-up/sign-up.component';
@@ -18,9 +20,9 @@ const routes: Routes = [
 
   //added guard to the paths so that without login these paths can't be accessed
   { path: 'profile', component: UserProfileComponent,canActivate: [AuthGuard]},
-  { path: 'books', component: BooksComponent ,canActivate: [AuthGuard]},
+  { path: 'books', component: BooksComponent ,canActivate: [PublisherAuthGuard]},
   { path: 'bookdetails/:id', component: BookDetailsComponent,canActivate: [AuthGuard] },
-  { path: 'library', component: LibraryComponent },
+  { path: 'library', component: LibraryComponent,canActivate: [ReaderAuthGuard] },
 ];
 
 @NgModule({

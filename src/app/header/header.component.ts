@@ -7,7 +7,7 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-isPublisher!:Boolean;
+isPublisher:Boolean = false;
   constructor( public userService:UserService) { }
 
   ngOnInit(): void {

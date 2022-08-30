@@ -1,3 +1,4 @@
+
 <p>LIBRARY</p>
 <div class="gradient-custom-2">
   <div style="margin-top: 6rem">
@@ -13,28 +14,34 @@
       ></button>
     </div>
   </div>
-  <button (click)="changeView()" class="btn btn-dark left-btn mt-5">
-    <span *ngIf="!isList">View List</span>
-    <span *ngIf="isList">View Grid</span>
-  </button>
 
-  <div class="row pb-5 mb-4">
-    <div id="myDIV" class="grid">
-      <!-- Card-->
-      <div class="grid-card" *ngFor="let book of books">
-        <div class="card rounded shadow-sm border-2">
-          <div class="card-body p-4">
-            <div class="title">
-              <span>{{ book.name }}</span>
-            </div>
-            <div class="book-body">
-              <h5>
-                <a class="text-dark">{{ book.name }}</a>
-              </h5>
-            </div>
-          </div>
-        </div>
+<button (click)="changeView()" class="btn btn-dark left-btn">
+  <span *ngIf="!isList">View List</span>
+  <span *ngIf="isList">View Grid</span>
+</button>
+
+<div class="container">
+  <div id="bookView" class="row row-cols-4 grid">
+    <div class="col box" *ngFor="let book of books">
+      <img
+        src="./assets/img/book-cover.jpg"
+        alt="book-default-img"
+        style="max-width: 70%;"
+      />
+      <div class="bookText">
+        <p><strong>Name:</strong> {{ book.name }}</p>
+        <p><strong>Authors:</strong> {{ book.authors }}</p>
+        <p><strong>Year:</strong> {{book.year}}</p>
+        <p><strong>Ratings:</strong> {{book.authors}}</p>
+      </div>
+      <div class="buttons">
+        <div class="btns">
+      <button class="btn btn-primary" routerLink="/bookdetails/{{book._id}}"><i class="fa fa-book" aria-hidden="true"></i></button>
+        <button class="btn btn-primary favourite" (click)="addToFavourite(book)" [disabled]="hasFaourite(book)"><i class="fa fa-star star" aria-hidden="true"></i>
+        </button>
+       </div>
       </div>
     </div>
   </div>
+</div>
 </div>
