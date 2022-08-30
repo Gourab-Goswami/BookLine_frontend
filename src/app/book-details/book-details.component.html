@@ -1,94 +1,202 @@
 <div *ngIf="!bookAvailable && !loadingBook" class="container">
-    <span>Book is successfully removed !</span><br>
-    <a routerLink="/books">Go to All Books</a>
+  <span>Book is successfully removed !</span><br />
+  <a routerLink="/books">Go to All Books</a>
 </div>
 
 <!-- book details -->
 <div *ngIf="bookAvailable">
-    <div class="container">
-        <div class="alert alert-danger alert-dismissible fade show" *ngIf="isError">
-            <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i>{{errorMsg}}</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="isError=false"></button>
-        </div>
-        <div class="alert alert-success alert-dismissible fade show" *ngIf="isSuccess">
-            <h4 class="alert-heading"><i class="bi-exclamation-octagon-fill"></i>{{successMsg}}</h4>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="isSuccess=false"></button>
-        </div>
-        <div class="title">
-            {{bookDetails?.name}}
-        </div>
-
-        <div class="Body">
-            <div> <strong>By {{bookDetails.authors}}</strong></div>
-            <div><strong>Year: {{bookDetails.year}}</strong></div>
-        </div>
-
-        <div><strong>Summary:</strong> {{bookDetails.summary}}</div>
+  <div class="container">
+    <div class="alert alert-danger alert-dismissible fade show" *ngIf="isError">
+      <h4 class="alert-heading">
+        <i class="bi-exclamation-octagon-fill"></i>{{ errorMsg }}
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        (click)="isError = false"
+      ></button>
+    </div>
+    <div
+      class="alert alert-success alert-dismissible fade show"
+      *ngIf="isSuccess"
+    >
+      <h4 class="alert-heading">
+        <i class="bi-exclamation-octagon-fill"></i>{{ successMsg }}
+      </h4>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        (click)="isSuccess = false"
+      ></button>
+    </div>
+    <div class="title">
+      {{ bookDetails?.name }}
     </div>
 
-    <div class="button">
-        <Button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#updateBook">Update</Button>
-        <Button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</Button>
-        <Button type="button" class="btn btn-dark" (click)="goBack()">Back</Button>
+    <div class="Body">
+      <div>
+        <strong>By {{ bookDetails.authors }}</strong>
+      </div>
+      <div>
+        <strong>Year: {{ bookDetails.year }}</strong>
+      </div>
     </div>
+
+    <div><strong>Summary:</strong> {{ bookDetails.summary }}</div>
+  </div>
+
+  <div class="button">
+    <Button
+      *ngIf="userStatus === 'publisher'"
+      class="btn btn-dark"
+      data-bs-toggle="modal"
+      data-bs-target="#updateBook"
+      >Update</Button
+    >
+    <Button
+      *ngIf="userStatus === 'publisher'"
+      type="button"
+      class="btn btn-dark"
+      data-bs-toggle="modal"
+      data-bs-target="#deleteModal"
+      >Delete</Button
+    >
+    <Button type="button" class="btn btn-dark" (click)="isRead = !isRead"
+      >Read</Button
+    >
+    <Button type="button" class="btn btn-dark" (click)="goBack()">Back</Button>
+  </div>
+</div>
+
+<i
+  *ngIf="isRead"
+  (click)="isRead = !isRead"
+  class="fa fa-times-circle-o close" 
+  aria-hidden="true"
+  data-bs-placement="top"
+  title="Close"
+></i>
+<div *ngIf="isRead" class="read-container">
+  <p>
+    {{ bookDetails.content }}
+  </p>
 </div>
 
 <!--Delete book Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    *ngIf="bookAvailable">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                This book will be permanently deleted. Do you want to continue?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <button type="button" class="btn btn-primary" style="background-color: red;" data-bs-dismiss="modal"
-                    (click)="deleteBooks(bookDetails.id)">Yes</button>
-            </div>
-        </div>
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  *ngIf="bookAvailable"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirm Delete</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        This book will be permanently deleted. Do you want to continue?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          No
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          style="background-color: red"
+          data-bs-dismiss="modal"
+          (click)="deleteBooks(bookDetails.id)"
+        >
+          Yes
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
-
 <!-- update book modal -->
-<div class="modal fade" id="updateBook" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    *ngIf="bookAvailable">
-    <div class="modal-dialog  modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Book</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label class="col-form-label">Book Name:</label>
-                    <input type="text" [(ngModel)]="bookDetails.name" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="col-form-label">Year:</label>
-                    <select [(ngModel)]="bookDetails.year" class="form-control selectpicker" data-size="5">
-                        <option *ngFor="let year of years">{{year}}</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label class="col-form-label">Authors:</label>
-                    <input type="text" [(ngModel)]="bookDetails.authors" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="message-text" class="col-form-label">Summary:</label>
-                    <textarea [(ngModel)]="bookDetails.summary" class="form-control"></textarea>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-dark" data-bs-dismiss="modal"
-                        (click)="updateBooks()">Update</button>
-                </div>
-            </div>
+<div
+  class="modal fade"
+  id="updateBook"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  *ngIf="bookAvailable"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Book</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="col-form-label">Book Name:</label>
+          <input
+            type="text"
+            [(ngModel)]="bookDetails.name"
+            class="form-control"
+          />
         </div>
+        <div class="mb-3">
+          <label class="col-form-label">Year:</label>
+          <select
+            [(ngModel)]="bookDetails.year"
+            class="form-control selectpicker"
+            data-size="5"
+          >
+            <option *ngFor="let year of years">{{ year }}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="col-form-label">Authors:</label>
+          <input
+            type="text"
+            [(ngModel)]="bookDetails.authors"
+            class="form-control"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="message-text" class="col-form-label">Summary:</label>
+          <textarea
+            [(ngModel)]="bookDetails.summary"
+            class="form-control"
+          ></textarea>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="submit"
+            class="btn btn-dark"
+            data-bs-dismiss="modal"
+            (click)="updateBooks()"
+          >
+            Update
+          </button>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

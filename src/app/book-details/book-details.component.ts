@@ -18,12 +18,17 @@ export class BookDetailsComponent implements OnInit {
   isError = false;
   successMsg = '';
   isSuccess = false;
+  userStatus:any;
+  isRead!:Boolean;
 
   constructor(public bookService: BookService, public route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     // getting book id from route parameter
     let bookId = this.route.snapshot.paramMap.get('id');
+
+    //getting user status from localStorage
+    this.userStatus = localStorage.getItem('status');
 
     // fetching book details
     this.bookService.getBookDetails(bookId).pipe(

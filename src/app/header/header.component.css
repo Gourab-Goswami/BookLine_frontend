@@ -1,32 +1,43 @@
 .font-size3 {
-    font-size: 3vw;
+  font-size: 3vw;
 }
 
 .font-size2 {
-    font-size: 2vw;
+  font-size: 2vw;
 }
 
 .font-size1 {
-    font-size: 1.5vw;
+  font-size: 1.5vw;
 }
-.text-white{
-color: #fff;
+.text-white {
+  color: #fff;
 }
-.active{
-    margin:1vw;
+.active {
+  margin: 1vw;
 }
 .active:active {
-    border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #fff;
 }
 
-.active:hover{
-    border-bottom: 1px solid #fff;
-    margin-bottom: -1px;
+.active:hover {
+  border-bottom: 1px solid #fff;
+  margin-bottom: -1px;
 }
-.log-out{
+.log-out {
+  cursor: pointer;
+  border-left: 1px solid #fff;
+}
+.log-out:hover {
+  border-bottom: 1px solid #fff;
+}
+
+@media only screen and (max-width: 576px) {
+  .log-out {
     cursor: pointer;
     border-left: 1px solid #fff;
-}
-.log-out:hover{
-    border-bottom: 1px solid #fff;
+    margin-right: 1rem;
+  }
+  .navbar-nav {
+    display: contents;
+  }
 }

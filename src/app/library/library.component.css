@@ -11,6 +11,12 @@
     margin: -4rem -2rem -2rem -2rem;
     
     }
+.bookText p{
+  margin:0 ;
+}
+.buttons{
+  margin-bottom: 3rem;
+}
 .left-btn {
   margin-left: 4rem;
   margin-top: 8rem;
@@ -22,7 +28,44 @@
 .favourite:disabled .star{
   color: #ffe600;
 } 
-
+.read{
+  margin: 0 1rem 0 1rem;
+}
+.grid{
+  display: flex;
+}
+.list{
+  display: block;
+}
+.list img{
+  max-height: 12rem;
+  max-width: 6rem;
+  padding: 1rem;
+  border: none;
+}
+.list .box{
+  width: 100%;
+  display: flex;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid black;
+}
+.list .bookText{
+  justify-content: center;
+  width: 40%;
+  margin: auto;
+  text-align: left;
+}
+.list .buttons{
+  margin: 0;
+}
+.list .buttons .btns{
+  display: grid;
+  margin-top:4rem;
+  margin-bottom: auto;
+}
+.list .buttons .btns button{
+  margin-bottom: 1rem;
+}
 @media only screen and (min-width : 481px) {
   .flex-row.row {
     display: flex;
@@ -43,24 +86,51 @@
     display: flex;
 	 flex: 1;
   }
-  .box{
-    border: 2px solid green;
-    min-height: 24rem;
-    padding: 1rem;
-    margin: 1rem;
-  }
 }
 @media only screen and (max-width : 576px) {
+  .gradient-custom-2{
+    margin-top: -8rem;
+  }
   .left-btn {
    display: none;
   }
   .container{
-margin-top:8rem;
+  margin-top:8rem;
+  }
+  .grid{
+    display: block;
+    padding: 1rem;
+  }
+  .grid img{
+    max-height: 12rem;
+    max-width: 6rem;
+    padding: 1rem;
+    border: none;
+  }
+  .grid .box{
+    width: 100%;
+    display: flex;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid black;
+  }
+  .grid .bookText{
+    justify-content: center;
+    width: 40%;
+    margin: auto;
+    text-align: left;
+  }
+  .grid .buttons{
+    margin: 0 1rem;
+  }
+  .grid .buttons .btns{
+    display: grid;
+    margin-top:3rem;
+    margin-bottom: auto;
+  }
+  .grid .buttons .btns button{
+    margin-bottom: 1rem;
   }
 }
-
-
-
 
 /* Grow thumbnails to fill columns height */
 .flex-row .thumbnail,
@@ -68,11 +138,6 @@ margin-top:8rem;
 	display: flex;
 	flex: 1 0 auto;
 	flex-direction: column;
-}
-
-/* Flex Grow Text Container */
-.flex-row .caption p.flex-text {
-	flex-grow: 1;
 }
 
 /* Flex Responsive Image */

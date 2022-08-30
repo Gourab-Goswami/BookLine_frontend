@@ -19,24 +19,27 @@
   <span *ngIf="!isList">View List</span>
   <span *ngIf="isList">View Grid</span>
 </button>
+
 <div class="container">
-  <div id="bookView" class="flex-row row">
-    <div class="col-xs-6 col-sm-4 col-lg-3 box" *ngFor="let book of books">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3 style="height:60%;overflow:hidden;">{{book.name | uppercase}}</h3>
-          <p class="flex-text text-muted">
-            <strong>Title: </strong>{{book.name}}
-          </p>
-          <p class="flex-text text-muted">
-            <strong>By </strong>{{book.authors}}
-          </p>
-          <p class="flex-text text-muted">
-            <strong>Year: </strong>{{book.year}}
-          </p>
-          <p><button class="btn btn-primary favourite" (click)="addToFavourite(book)" [disabled]="hasFaourite(book)"><i class="fa fa-star star" aria-hidden="true"></i>
-            Favourite</button></p>
-        </div>
+  <div id="bookView" class="row row-cols-4 grid">
+    <div class="col box" *ngFor="let book of books">
+      <img
+        src="./assets/img/book-cover.jpg"
+        alt="book-default-img"
+        style="max-width: 70%;"
+      />
+      <div class="bookText">
+        <p><strong>Name:</strong> {{ book.name }}</p>
+        <p><strong>Authors:</strong> {{ book.authors }}</p>
+        <p><strong>Year:</strong> {{book.year}}</p>
+        <p><strong>Ratings:</strong> {{book.authors}}</p>
+      </div>
+      <div class="buttons">
+        <div class="btns">
+      <button class="btn btn-primary" routerLink="/bookdetails/{{book._id}}"><i class="fa fa-book" aria-hidden="true"></i></button>
+        <button class="btn btn-primary favourite" (click)="addToFavourite(book)" [disabled]="hasFaourite(book)"><i class="fa fa-star star" aria-hidden="true"></i>
+        </button>
+       </div>
       </div>
     </div>
   </div>
