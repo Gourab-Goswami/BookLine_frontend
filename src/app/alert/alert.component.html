@@ -1,0 +1,13 @@
+<div id="alert" style="margin-top: 6rem; width: 100%; position: fixed">
+  <div
+    class="alert alert-danger alert-dismissible fade show Error"
+    *ngIf="isError"
+  >
+    <h4 class="alert-heading">
+      <i class="bi-exclamation-octagon-fill"></i>{{ errorMsg }}
+    </h4>
+    <button type="button" class="close-btn" (click)="isError = false">
+      <i class="fa fa-close close"></i>
+    </button>
+  </div>
+</div>

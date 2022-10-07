@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'profile', component: UserProfileComponent,canActivate: [AuthGuard]},
   { path: 'books', component: BooksComponent ,canActivate: [PublisherAuthGuard]},
   { path: 'bookdetails/:id', component: BookDetailsComponent,canActivate: [AuthGuard] },
-  { path: 'library', component: LibraryComponent,canActivate: [ReaderAuthGuard] },
+  { path: 'library', component: LibraryComponent},
 ];
 
 @NgModule({

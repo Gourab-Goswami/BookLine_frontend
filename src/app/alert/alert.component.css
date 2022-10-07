@@ -1,0 +1,33 @@
+.alert {
+  background: transparent;
+  position: relative;
+  padding: 1rem 1rem;
+  margin-top: 5rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  width: 30%;
+  float: right;
+}
+
+.alert-heading {
+  color: #af2f2f;
+  border: 0.2rem solid;
+  background: #fff5f6;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+  padding: 1.25rem 1rem;
+  background: transparent;
+  border: none;
+  margin: 1rem;
+}
+
+.close {
+  font-size: 2rem;
+  color: red;
+}

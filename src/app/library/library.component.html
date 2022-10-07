@@ -1,47 +1,123 @@
-
 <p>LIBRARY</p>
 <div class="gradient-custom-2">
-  <div style="margin-top: 6rem">
-    <div class="alert alert-danger alert-dismissible fade show" *ngIf="isError">
-      <h4 class="alert-heading">
-        <i class="bi-exclamation-octagon-fill"></i>{{ errorMsg }}
-      </h4>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        (click)="isError = false"
-      ></button>
+  <app-alert [isError]="isError" [errorMsg]="errorMsg"></app-alert>
+
+  <button (click)="changeView()" class="btn btn-dark left-btn">
+    <span *ngIf="!isList">View List</span>
+    <span *ngIf="isList">View Grid</span>
+  </button>
+
+  <div class="container">
+    <div id="bookView" class="row row-cols-4 grid">
+      <div class="col box" *ngFor="let book of books">
+        <img
+          src="./assets/img/book-cover.jpg"
+          alt="book-default-img"
+          style="max-width: 70%"
+        />
+        <div class="bookText">
+          <p><strong>Title:</strong> {{ book.name | uppercase }}</p>
+          <p><strong>Authors:</strong> {{ book.authors }}</p>
+          <p><strong>Year:</strong> {{ book.year }}</p>
+        </div>
+        <div class="buttons">
+          <div class="btns">
+            <div class="social-links">
+              <button
+                class="social-btn flex-center favourite"
+                (click)="addToFavourite(book)"
+                [disabled]="hasFaourite(book)"
+              >
+                <i class="fa fa-star star" aria-hidden="true"></i
+                ><span>Favourite</span>
+              </button>
+
+              <button
+                class="social-btn flex-center"
+                routerLink="/bookdetails/{{ book._id }}"
+              >
+                <i class="fa fa-book" aria-hidden="true"></i> <span>Read</span>
+              </button>
+
+              <button class="social-btn flex-center">
+                <i class="fa fa-book" aria-hidden="true"></i>
+                <span>Read</span>
+              </button>
+              <button
+                class="social-btn flex-center"
+                data-bs-toggle="modal"
+                data-bs-target="#myModel"
+                id="shareBtn"
+                data-bs-placement="top"
+              >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+                <span>Share</span>
+              </button>
+
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="myModel"
+                tabindex="-1"
+                aria-labelledby="myModelLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="myModelLabel">Share Book</h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="modal-body">
+                      <p>Share this link via</p>
+                      <div class="d-flex align-items-center icons">
+                        <a
+                          class="fs-5 d-flex align-items-center justify-content-center"
+                        >
+                          <span class="fab fa-facebook-f"></span>
+                        </a>
+                        <a
+                          class="fs-5 d-flex align-items-center justify-content-center"
+                        >
+                          <span class="fab fa-twitter"></span>
+                        </a>
+                        <a
+                          class="fs-5 d-flex align-items-center justify-content-center"
+                        >
+                          <span class="fab fa-instagram"></span>
+                        </a>
+                        <a
+                          class="fs-5 d-flex align-items-center justify-content-center"
+                        >
+                          <span class="fab fa-whatsapp"></span>
+                        </a>
+                        <a
+                          class="fs-5 d-flex align-items-center justify-content-center"
+                        >
+                          <span class="fab fa-telegram-plane"></span>
+                        </a>
+                      </div>
+                      <p>Or copy link</p>
+                      <div
+                        class="field d-flex align-items-center justify-content-between"
+                      >
+                        <span class="fas fa-link text-center"></span>
+                        <input type="text" value="some.com/share" />
+                        <button>Copy</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-<button (click)="changeView()" class="btn btn-dark left-btn">
-  <span *ngIf="!isList">View List</span>
-  <span *ngIf="isList">View Grid</span>
-</button>
-
-<div class="container">
-  <div id="bookView" class="row row-cols-4 grid">
-    <div class="col box" *ngFor="let book of books">
-      <img
-        src="./assets/img/book-cover.jpg"
-        alt="book-default-img"
-        style="max-width: 70%;"
-      />
-      <div class="bookText">
-        <p><strong>Name:</strong> {{ book.name }}</p>
-        <p><strong>Authors:</strong> {{ book.authors }}</p>
-        <p><strong>Year:</strong> {{book.year}}</p>
-        <p><strong>Ratings:</strong> {{book.authors}}</p>
-      </div>
-      <div class="buttons">
-        <div class="btns">
-      <button class="btn btn-primary" routerLink="/bookdetails/{{book._id}}"><i class="fa fa-book" aria-hidden="true"></i></button>
-        <button class="btn btn-primary favourite" (click)="addToFavourite(book)" [disabled]="hasFaourite(book)"><i class="fa fa-star star" aria-hidden="true"></i>
-        </button>
-       </div>
-      </div>
-    </div>
-  </div>
-</div>
 </div>
