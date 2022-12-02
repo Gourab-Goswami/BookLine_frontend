@@ -1,0 +1,11 @@
+<div class="card text-center mt-5" *ngFor="let request of invitations">
+  <div class="card-body">
+    <h5 class="card-title">{{ request.book_name | titlecase }}</h5>
+    <h6>Publisher: {{ request.publisher }}</h6>
+    <p>Total Pages: {{ request.pages }}</p>
+    <P>INR: {{ request.INR }}</P>
+    <button class="btn btn-primary">Accept</button>
+    <button class="btn btn-danger">Decline</button>
+  </div>
+  <div class="card-footer text-muted">2 days ago</div>
+</div>

@@ -1,199 +1,302 @@
 <section class="background-radial-gradient overflow-hidden">
-    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-        <div class="row gx-lg-5 align-items-center mb-5">
-            <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-                <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-                    Welcome To <br />
-                    <span style="color: hsl(218, 81%, 75%)">BOOKLINE</span>
-                </h1>
-                <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+  <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+    <div class="row gx-lg-5 align-items-center mb-5">
+      <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+        <h1
+          class="my-5 display-5 fw-bold ls-tight"
+          style="color: hsl(218, 81%, 95%)"
+        >
+          Welcome To <br />
+          <span style="color: hsl(218, 81%, 75%)">BOOKLINE</span>
+        </h1>
+        <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </div>
+      <div
+        class="col-lg-6 mb-5 mb-lg-0 position-relative display-5 fw-bold ls-tight"
+        *ngIf="isSignUpSuccess"
+      >
+        <h1 class="mb-4 opacity-70" style="color: rgb(44, 255, 44)">
+          Sign Up Successfull !<br />
+          please
+          <a routerLink="/login" style="color: hsl(218, 81%, 75%)">Log In</a>
+        </h1>
+      </div>
+
+      <div
+        class="col-lg-6 mb-5 mb-lg-0 position-relative"
+        *ngIf="!isSignUpSuccess"
+      >
+        <div class="card bg-glass">
+          <div class="card-body px-4 py-5 px-md-5">
+            <div class="form-outline mb-4">
+              <select [(ngModel)]="status" class="form-select">
+                <option value="" disabled selected hidden>Select Status</option>
+                <option value="publisher">Publisher</option>
+                <option value="reader">Reader</option>
+                <option value="critic">Critic</option>
+              </select>
             </div>
-            <div class="col-lg-6 mb-5 mb-lg-0 position-relative display-5 fw-bold ls-tight" *ngIf="isSignUpSuccess">
-                <h1 class="mb-4 opacity-70" style="color: rgb(44, 255, 44);"> Sign Up Successfull !<br>
-                    please <a routerLink="/login" style="color: hsl(218, 81%, 75%)">Log In</a></h1>
-            </div>
-
-            <div class="col-lg-6 mb-5 mb-lg-0 position-relative" *ngIf="!isSignUpSuccess">
-                <div class="card bg-glass">
-                    <div class="card-body px-4 py-5 px-md-5">
-
-                        <div class="form-outline mb-4">
-                            <select [(ngModel)]="status" class="form-select  ">
-                                <option value="" disabled selected hidden>Select Status</option>
-                                <option value="publisher">Publisher</option>
-                                <option value="reader">Reader</option>
-                            </select>
-                        </div>
-                        <form (ngSubmit)='signUpUser()' [formGroup]='signupForm' novalidate>
-
-                            <div class="row">
-                                <!-- First name input -->
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <input formControlName='fname' type="text" id="form3Example1"
-                                            class="form-control" placeholder="First Name" />
-                                        <small
-                                            *ngIf="signupForm.get('fname')!.hasError('required') && signupForm.get('fname')!.touched">
-                                            First name is required !
-                                        </small>
-                                    </div>
-                                </div>
-                                <!-- Last name input -->
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <input formControlName='lname' type="text" id="form3Example2"
-                                            class="form-control" placeholder="Last Name" />
-                                        <small
-                                            *ngIf="signupForm.get('lname')!.hasError('required') && signupForm.get('lname')!.touched">
-                                            Last name is required !
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- gender and age input-->
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <select class="form-select" formControlName="gender">
-                                            <option value="" disabled selected hidden>Gender</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="prefer_not_to_say">Prefer not to say</option>
-                                        </select>
-                                        <small
-                                            *ngIf="signupForm.get('gender')!.hasError('required') && signupForm.get('gender')!.touched">
-                                            Gender is required !
-                                        </small>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <input formControlName='age' type="number" id="form3Example2"
-                                            class="form-control" placeholder="Age" />
-                                        <small
-                                            *ngIf="signupForm.get('age')!.hasError('required') && signupForm.get('age')!.touched">
-                                            Age is required !
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- education input-->
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <select formControlName='education' class="form-select">
-                                            <option value="" disabled selected hidden>Education</option>
-                                            <option value="below_10th">Below 10th</option>
-                                            <option value="10th">10th</option>
-                                            <option value="12th">12th</option>
-                                            <option value="above_12th">Above</option>
-                                        </select>
-                                        <small
-                                            *ngIf="signupForm.get('education')!.hasError('required') && signupForm.get('education')!.touched">
-                                            Education is required !
-                                        </small>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <input formControlName='education_dep' type="text" id="form3Example2"
-                                            class="form-control" placeholder="Education Stream"
-                                            title="Example: B.A, M.A, B.Tech, B.B.A" />
-                                        <small
-                                            *ngIf="signupForm.get('education_dep')!.hasError('required') && signupForm.get('education_dep')!.touched">
-                                            Education Stream is required !
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- preferred genre -->
-                            <div class="form-outline mb-4">
-                                <div class="form-outline">
-                                     <button class="form-select" type="button" (click)="isGenreOn = !isGenreOn">
-                                        <strong>Preferred Genre</strong>
-                                    </button> 
-                                    <div class="tags">
-                                        <span *ngFor="let option of checkedPreferredGenre" class="checked">
-                                            {{option}}
-                                            <button class="remove-tag" (click)="deleteChoice(option)">X</button>
-                                        </span>
-                                    </div>                              
-                                    <div class="scrool-btn" *ngIf="isGenreOn">
-                                        <div *ngFor="let genre of bookGenre">                                               
-                                            <input type="checkbox" [value]="genre" (change)="onCheckboxChange($event)" [checked]="checkboxCheck(genre)"/>
-                                            {{genre}}
-                                        </div>
-                                    </div>
-                                
-                                </div>
-                            </div>
-
-                            <!-- username input -->
-                            <div class="form-outline mb-4">
-                                <input formControlName='uname' class="form-control" type="text"
-                                    placeholder="Enter username" />
-                                <div>
-                                    <small
-                                        *ngIf="signupForm.get('uname')!.hasError('required') && signupForm.get('uname')!.touched">
-                                        Username Address is required
-                                    </small>
-
-                                    <small *ngIf="signupForm.get('uname')!.hasError('pattern')">
-                                        Username must not start or end with special characters or less than 5 characters!
-                                    </small>
-                                </div>
-                            </div>
-
-                            <!-- Email input -->
-                            <div class="form-outline mb-4">
-                                <input formControlName='email' class="form-control" type="text"
-                                    placeholder="Enter Email" />
-                                <div>
-                                    <small
-                                        *ngIf="signupForm.get('email')!.hasError('required') && signupForm.get('email')!.touched">
-                                        Email Address is required
-                                    </small>
-
-                                    <small *ngIf="signupForm.get('email')!.hasError('pattern')">
-                                        Invalid Email Address !
-                                    </small>
-                                </div>
-                            </div>
-
-                            <!-- Password input -->
-                            <div class="form-outline mb-4">
-                                <input formControlName='password' type="password" class="form-control"
-                                    placeholder="Enter Password" />
-                                <div>
-                                    <small
-                                        *ngIf=" !signupForm.get('password')!.valid && signupForm.get('password')!.touched">
-                                        Password is required! Should be more tha 4 and less than 10 characters
-                                    </small>
-                                </div>
-                            </div>
-
-                            <!-- Submit button -->
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-dark btn-block mb-4 signup-btn"
-                                    [disabled]="signupForm.invalid">
-                                    Sign Up
-                                </button><br>
-                                <span> Already have an account?</span><a routerLink="/login">Log In</a>
-                            </div>
-                        </form>
-                    </div>
+            <form (ngSubmit)="signUpUser()" [formGroup]="signupForm" novalidate>
+              <div class="row">
+                <!-- First name input -->
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input
+                      formControlName="fname"
+                      type="text"
+                      id="form3Example1"
+                      class="form-control"
+                      placeholder="First Name"
+                    />
+                    <small
+                      *ngIf="
+                        signupForm.get('fname')!.hasError('required') &&
+                        signupForm.get('fname')!.touched
+                      "
+                    >
+                      First name is required !
+                    </small>
+                  </div>
                 </div>
-            </div>
+                <!-- Last name input -->
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input
+                      formControlName="lname"
+                      type="text"
+                      id="form3Example2"
+                      class="form-control"
+                      placeholder="Last Name"
+                    />
+                    <small
+                      *ngIf="
+                        signupForm.get('lname')!.hasError('required') &&
+                        signupForm.get('lname')!.touched
+                      "
+                    >
+                      Last name is required !
+                    </small>
+                  </div>
+                </div>
+              </div>
+              <!-- gender and age input-->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <select class="form-select" formControlName="gender">
+                      <option value="" disabled selected hidden>Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="prefer_not_to_say">
+                        Prefer not to say
+                      </option>
+                    </select>
+                    <small
+                      *ngIf="
+                        signupForm.get('gender')!.hasError('required') &&
+                        signupForm.get('gender')!.touched
+                      "
+                    >
+                      Gender is required !
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input
+                      formControlName="age"
+                      type="number"
+                      id="form3Example2"
+                      class="form-control"
+                      placeholder="Age"
+                    />
+                    <small
+                      *ngIf="
+                        signupForm.get('age')!.hasError('required') &&
+                        signupForm.get('age')!.touched
+                      "
+                    >
+                      Age is required !
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- education input-->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <select formControlName="education" class="form-select">
+                      <option value="" disabled selected hidden>
+                        Education
+                      </option>
+                      <option value="below_10th">Below 10th</option>
+                      <option value="10th">10th</option>
+                      <option value="12th">12th</option>
+                      <option value="above_12th">Above</option>
+                    </select>
+                    <small
+                      *ngIf="
+                        signupForm.get('education')!.hasError('required') &&
+                        signupForm.get('education')!.touched
+                      "
+                    >
+                      Education is required !
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input
+                      formControlName="education_dep"
+                      type="text"
+                      id="form3Example2"
+                      class="form-control"
+                      placeholder="Education Stream"
+                      title="Example: B.A, M.A, B.Tech, B.B.A"
+                    />
+                    <small
+                      *ngIf="
+                        signupForm.get('education_dep')!.hasError('required') &&
+                        signupForm.get('education_dep')!.touched
+                      "
+                    >
+                      Education Stream is required !
+                    </small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- preferred genre -->
+              <div class="form-outline mb-4">
+                <div class="form-outline">
+                  <button
+                    class="form-select"
+                    type="button"
+                    (click)="isGenreOn = !isGenreOn"
+                  >
+                    <strong>Preferred Genre</strong>
+                  </button>
+                  <div class="tags">
+                    <span
+                      *ngFor="let option of checkedPreferredGenre"
+                      class="checked"
+                    >
+                      {{ option }}
+                      <button class="remove-tag" (click)="deleteChoice(option)">
+                        X
+                      </button>
+                    </span>
+                  </div>
+                  <div class="scrool-btn" *ngIf="isGenreOn">
+                    <div *ngFor="let genre of bookGenre">
+                      <input
+                        type="checkbox"
+                        [value]="genre"
+                        (change)="onCheckboxChange($event)"
+                        [checked]="checkboxCheck(genre)"
+                      />
+                      {{ genre }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- username input -->
+              <div class="form-outline mb-4">
+                <input
+                  formControlName="uname"
+                  class="form-control"
+                  type="text"
+                  placeholder="Enter username"
+                />
+                <div>
+                  <small
+                    *ngIf="
+                      signupForm.get('uname')!.hasError('required') &&
+                      signupForm.get('uname')!.touched
+                    "
+                  >
+                    Username Address is required
+                  </small>
+
+                  <small *ngIf="signupForm.get('uname')!.hasError('pattern')">
+                    Username must not start or end with special characters or
+                    less than 5 characters!
+                  </small>
+                </div>
+              </div>
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input
+                  formControlName="email"
+                  class="form-control"
+                  type="text"
+                  placeholder="Enter Email"
+                />
+                <div>
+                  <small
+                    *ngIf="
+                      signupForm.get('email')!.hasError('required') &&
+                      signupForm.get('email')!.touched
+                    "
+                  >
+                    Email Address is required
+                  </small>
+
+                  <small *ngIf="signupForm.get('email')!.hasError('pattern')">
+                    Invalid Email Address !
+                  </small>
+                </div>
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input
+                  formControlName="password"
+                  type="password"
+                  class="form-control"
+                  placeholder="Enter Password"
+                />
+                <div>
+                  <small
+                    *ngIf="
+                      !signupForm.get('password')!.valid &&
+                      signupForm.get('password')!.touched
+                    "
+                  >
+                    Password is required! Should be more tha 4
+                  </small>
+                </div>
+              </div>
+
+              <!-- Submit button -->
+              <div class="text-center">
+                <button
+                  type="submit"
+                  class="btn btn-dark btn-block mb-4 signup-btn"
+                  [disabled]="signupForm.invalid"
+                >
+                  Sign Up</button
+                ><br />
+                <span> Already have an account?</span
+                ><a routerLink="/login">Log In</a>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
