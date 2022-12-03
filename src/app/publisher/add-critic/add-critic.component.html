@@ -1,0 +1,40 @@
+<div class="container" style="margin-top: 8rem">
+  <div class="m-4 mt-4">
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th>Book Name</th>
+          <th>Year</th>
+          <th>Authors</th>
+          <th>Pages</th>
+          <th>INR</th>
+          <th>Choose Critic</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let book of books">
+        <td>{{ book.name | titlecase }}</td>
+        <td>{{ book.year }}</td>
+        <td>{{ book.authors }}</td>
+        <td>{{ book.pages }}</td>
+        <td>
+          <i class="fa fa-inr" aria-hidden="true"></i>
+          {{ book?.pages * 20 }}
+        </td>
+        <td>
+          <select class="form-control" (change)="changeCritic($event)">
+            <option disabled selected>Select Critic</option>
+            <option *ngFor="let critic of critics" value="{{ critic._id }}">
+              {{ critic.uname }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <button (click)="sendRequestToCritic(book)">
+            <span>Send Request</span>
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -31,13 +31,14 @@
   border-bottom: 1px solid #fff;
 }
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 991px) {
   .log-out {
     cursor: pointer;
     border-left: 1px solid #fff;
     margin-right: 1rem;
   }
   .navbar-nav {
-    display: contents;
+    display: flex;
+    flex-direction: row;
   }
 }
