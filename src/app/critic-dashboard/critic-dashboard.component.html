@@ -4,8 +4,21 @@
     <h6>Publisher: {{ request.publisher }}</h6>
     <p>Total Pages: {{ request.pages }}</p>
     <P>INR: {{ request.INR }}</P>
-    <button class="btn btn-primary">Accept</button>
-    <button class="btn btn-danger">Decline</button>
+    <p *ngIf="request.status === 'accepted'">Status: {{ request.status }}</p>
+    <button
+      class="btn btn-primary"
+      *ngIf="request.status === 'pending'"
+      (click)="requestAction(request, 'accepted')"
+    >
+      Accept
+    </button>
+    <button
+      class="btn btn-danger"
+      *ngIf="request.status === 'pending'"
+      (click)="requestAction(request, 'denied')"
+    >
+      Decline
+    </button>
   </div>
   <div class="card-footer text-muted">2 days ago</div>
 </div>

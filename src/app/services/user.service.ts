@@ -60,6 +60,13 @@ export class UserService {
     );
   }
 
+  requestAction(id: any, response: any) {
+    return this.http.post(
+      environment.baseUrl + '/critic/updateRequestStatus/' + id,
+      response
+    );
+  }
+
   // get flag from localStorage to check if user is logged in
   userLoggedIn() {
     return localStorage.getItem('isLoggedIn');
