@@ -1,24 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  isUserLoggedIn: Boolean = false;
   isPublisher: Boolean = false;
+  isCritic: Boolean = false;
+  isReader: Boolean = false;
   redirectionPath!: string;
-  userStatus!: string | null;
-  constructor(public userService: UserService) {}
+  constructor(public userService: UserService, private _router: Router) {}
 
   ngOnInit(): void {
-    this.userStatus = localStorage.getItem('status');
-    this.setRedirectionPath();
+    this.isUserLoggedIn = this.userService.userLoggedIn() ? true : false;
+    let userStatus = this.userService.localUserStatus();
+    if (userStatus) {
+      this.setUserStatus(userStatus);
+    }
+
+    this.setRedirectionPath(userStatus);
+  }
+  get route() {
+    let url = this._router.url;
+    return url;
   }
 
-  setRedirectionPath() {
-    this.userStatus === 'publisher'
+  setUserStatus(userStatus: string) {
+    if (userStatus === 'publisher') {
+      this.isPublisher = true;
+    } else if (userStatus === 'critic') {
+      this.isCritic = true;
+    } else if (userStatus === 'reader') {
+      this.isReader = true;
+    }
+  }
+
+  setRedirectionPath(userStatus: string | null) {
+    userStatus === 'publisher'
       ? (this.redirectionPath = '/books')
       : (this.redirectionPath = '/library');
   }

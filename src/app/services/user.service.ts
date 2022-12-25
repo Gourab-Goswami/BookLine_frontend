@@ -46,7 +46,6 @@ export class UserService {
   //    }
   // ]
   addBookToCritic(id: any, data: object) {
-    console.log(id, data);
     return this.http.post(
       environment.baseUrl + '/publisher/assignCritic/' + id,
       data
@@ -70,6 +69,13 @@ export class UserService {
   // get flag from localStorage to check if user is logged in
   userLoggedIn() {
     return localStorage.getItem('isLoggedIn');
+  }
+
+  setUserLogInData(userDetails: any) {
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('status', userDetails.status);
+    localStorage.setItem('id', userDetails._id);
+    localStorage.setItem('username', userDetails.uname);
   }
 
   localUserStatus() {

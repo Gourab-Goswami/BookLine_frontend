@@ -51,21 +51,24 @@ export class LoginComponent implements OnInit {
         ],
       ],
     });
+    this.resetUserData();
+  }
+
+  resetUserData() {
     // removing data from localStorage if user is in logIn page
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
     localStorage.removeItem('id');
+    localStorage.removeItem('status');
   }
+
   loginUser() {
     this.isLoading = true;
     this.userService.userLogin(this.loginForm.value).subscribe({
       next: (res: any) => {
         if (res) {
           // naviagete to books page after successful log in
-          localStorage.setItem('isLoggedIn', 'true');
-          localStorage.setItem('id', res._id);
-          localStorage.setItem('username', res.uname);
-          localStorage.setItem('status', res.status);
+          this.userService.setUserLogInData(res);
           if (res.status === 'publisher') {
             this.router.navigate(['/books']);
           }
@@ -75,19 +78,18 @@ export class LoginComponent implements OnInit {
           if (res.status === 'critic') {
             this.router.navigate(['/critic-dashboard']);
           }
-          this.hideloader();
         }
       },
-      error: () => {
-        this.toastr.error('Please try again', 'ERROR');
+      error: (error) => {
+        if (error.status === 401) {
+          this.toastr.error('User does not exist', 'ERROR');
+        } else {
+          this.toastr.error('Could not log in. Please try again', 'ERROR');
+        }
+        setTimeout(() => {
+          this.isLoading = false;
+        }, 1000);
       },
     });
-  }
-
-  hideloader() {
-    let loading = document.getElementById('loading');
-    if (loading) {
-      loading.style.display = 'none';
-    }
   }
 }
