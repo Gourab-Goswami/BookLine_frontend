@@ -36,7 +36,6 @@ export class CriticDashboardComponent implements OnInit {
   }
 
   requestAction(requestDetails: any, action: string) {
-    console.log(requestDetails, action);
     let payload = {
       bookId: requestDetails.book_Id,
       publisher: requestDetails.publisher,

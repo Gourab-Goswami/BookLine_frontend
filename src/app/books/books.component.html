@@ -1,21 +1,5 @@
-<h1>Books</h1>
-
 <!-- Alert, add button and search box -->
 <div class="top">
-  <div class="m-4">
-    <div class="alert alert-danger alert-dismissible fade show" *ngIf="isError">
-      <h4 class="alert-heading">
-        <i class="bi-exclamation-octagon-fill"></i>{{ errorMsg }}
-      </h4>
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        (click)="isError = false"
-      ></button>
-    </div>
-  </div>
-
   <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#addBook">
     <i class="fa fa-plus" aria-hidden="true"></i>ADD BOOKS
   </button>

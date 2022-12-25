@@ -1,55 +1,179 @@
-<!-- Navigation Bar -->
+<!-- Navbar -->
 <nav
-  class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"
+  class="navbar navbar-expand-lg navbar-dark bg-dark"
   *ngIf="this.userService.userLoggedIn()"
 >
   <div class="container-fluid">
-    <!-- brand title -->
-    <a class="navbar-brand font-size3">BOOKLINE</a>
+    <a class="navbar-brand">BOOKLINE</a>
 
-    <ul class="navbar-nav m-auto mb-2 mb-lg-0 text-center">
-      <!-- navbar profile option to show user profile -->
-      <li class="nav-item" *ngIf="userStatus === 'critic'">
-        <a
-          class="nav-link font-size1 text-light active"
-          routerLink="/critic-dashboard"
-          >DASHBOARD</a
-        >
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link font-size1 text-light active"
-          aria-current="page"
-          routerLink="/profile"
-          >PROFILE</a
-        >
-      </li>
-
-      <!-- navbar books option to show all books -->
-      <li class="nav-item">
-        <a
-          class="nav-link font-size1 text-light active"
-          routerLink="{{ redirectionPath }}"
-          >BOOKS</a
-        >
-      </li>
-      <li class="nav-item" *ngIf="userStatus === 'publisher'">
-        <a
-          class="nav-link font-size1 text-light active"
-          routerLink="/add-critic"
-          >REVIEW</a
-        >
-      </li>
-    </ul>
-
-    <!-- to show username/email to the navbar -->
-    <span class="nav-link font-size1 text-light" routerLink="/profile">
-      <i class="fa fa-user-circle-o"></i> {{ this.userService.getUserData() }}
-    </span>
-
-    <!-- logout button -->
-    <a class="nav-link font-size1 text-light log-out" (click)="logOut()"
-      ><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</a
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      id="menubar"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
     >
+      <i class="fa fa-bars text-light"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" aria-labelledby="menubar">
+      <!-- Left links -->
+      <div class="task-menu">
+        <div class="wrapper">
+          <ul class="navbar-nav d-flex flex-row mt-3 mt-lg-0">
+            <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isCritic">
+              <a
+                *ngIf="isCritic"
+                class="nav-link"
+                routerLink="/critic-dashboard"
+                [ngClass]="[route === '/critic-dashboard' ? 'active' : '']"
+              >
+                <div>
+                  <i class="fa fa-dashboard fa-lg mb-1"></i>
+                </div>
+                Dashboard</a
+              >
+            </li>
+            <li
+              class="nav-item text-center mx-2 mx-lg-1"
+              *ngIf="isPublisher || isCritic || isReader"
+            >
+              <a
+                class="nav-link"
+                routerLink="{{ redirectionPath }}"
+                [ngClass]="[
+                  route === '/books' || route === '/library' ? 'active' : ''
+                ]"
+              >
+                <div>
+                  <i class="fa fa-book fa-lg mb-1"></i>
+                </div>
+                <span *ngIf="isPublisher">Books</span>
+                <span *ngIf="isCritic || isReader">Library</span></a
+              >
+            </li>
+            <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isPublisher">
+              <a class="nav-link">
+                <div>
+                  <i class="fa fa-users fa-lg mb-1"></i>
+                </div>
+                Critics
+              </a>
+            </li>
+            <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isPublisher">
+              <a
+                class="nav-link"
+                routerLink="/add-critic"
+                [ngClass]="[route === '/add-critic' ? 'active' : '']"
+              >
+                <div>
+                  <i class="fa fa-user-plus fa-lg mb-1"></i>
+                </div>
+                Review
+              </a>
+            </li>
+            <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isPublisher">
+              <a class="nav-link">
+                <div>
+                  <i class="fa fa-bar-chart fa-lg mb-1"></i>
+                </div>
+                Results
+              </a>
+            </li>
+            <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isPublisher">
+              <a class="nav-link">
+                <div>
+                  <i class="fa fa-money fa-lg mb-1"></i>
+                </div>
+                Expenses
+              </a>
+            </li>
+            <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isCritic">
+              <a class="nav-link">
+                <div>
+                  <i class="fa fa-tasks fa-lg mb-1"></i>
+                </div>
+                Tasks
+              </a>
+            </li>
+            <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isCritic">
+              <a class="nav-link">
+                <div>
+                  <i class="fa fa-history fa-lg mb-1"></i>
+                </div>
+                Hostory
+              </a>
+            </li>
+            <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isCritic">
+              <a class="nav-link">
+                <div>
+                  <i class="fa fa-file-text-o fa-lg mb-1"></i>
+                </div>
+                Invoice
+              </a>
+            </li>
+            <li
+              class="nav-item dropdown text-center mx-2 mx-lg-1"
+              *ngIf="isCritic"
+            >
+              <a
+                class="nav-link dropdown-toggle"
+                type="button"
+                id="notification"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <div>
+                  <i class="fa fa-bell fa-lg mb-1"></i>
+                  <span class="badge rounded-pill badge-notification bg-primary"
+                    >11</span
+                  >
+                </div>
+                Notification
+              </a>
+              <!-- Notification menu -->
+              <ul class="dropdown-menu" aria-labelledby="notification">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider" />
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right links -->
+      <div class="user-menu ms-auto">
+        <ul class="navbar-nav d-flex flex-row mt-3 mt-lg-0 float-end">
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a
+              class="nav-link"
+              routerLink="/profile"
+              [ngClass]="[route === '/profile' ? 'active' : '']"
+            >
+              <div>
+                <i class="fa fa-user-circle-o fa-lg mb-1"></i>
+              </div>
+              {{ this.userService.getUserData() }}
+            </a>
+          </li>
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a class="nav-link" (click)="logOut()">
+              <div>
+                <i class="fa fa-sign-out fa-lg mb-1"></i>
+              </div>
+              Log Out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </nav>
