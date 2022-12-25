@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   adminData = {
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   });
   isLoading!: Boolean;
   invalidInput: boolean = false;
+  isShowPassword: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     public userService: UserService,
@@ -60,6 +61,10 @@ export class LoginComponent implements OnInit {
     localStorage.removeItem('username');
     localStorage.removeItem('id');
     localStorage.removeItem('status');
+  }
+
+  showHidePassword() {
+    this.isShowPassword = !this.isShowPassword;
   }
 
   loginUser() {

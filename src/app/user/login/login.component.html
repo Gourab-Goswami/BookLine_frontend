@@ -2,25 +2,16 @@
   <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
     <div class="row gx-lg-5 align-items-center mb-5">
       <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-        <h1
-          class="my-5 display-5 fw-bold ls-tight"
-          style="color: hsl(218, 81%, 95%)"
-        >
+        <h1 class="my-5 display-5 fw-bold ls-tight title">
           Welcome To <br />
-          <span style="color: hsl(218, 81%, 75%)">BOOKLINE</span>
+          <span>BOOKLINE</span>
         </h1>
-        <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
       </div>
-      <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+      <div class="col-lg-6 mb-5 mb-lg-0 position-relative log-in">
         <div class="card bg-glass">
+          <div class="login-logo">
+            <img src="assets/img/log-in-logo.gif" />
+          </div>
           <div class="card-body px-4 py-5 px-md-5">
             <form (ngSubmit)="loginUser()" [formGroup]="loginForm" novalidate>
               <!-- Email input -->
@@ -49,12 +40,25 @@
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input
-                  formControlName="password"
-                  type="password"
-                  class="form-control"
-                  placeholder="Enter Password"
-                />
+                <div class="password-section">
+                  <input
+                    formControlName="password"
+                    [type]="[isShowPassword ? 'text' : 'password']"
+                    class="form-control password-input"
+                    placeholder="Enter Password"
+                  />
+                  <button
+                    type="button"
+                    class="show-hide-btn"
+                    (click)="showHidePassword()"
+                  >
+                    <i
+                      [ngClass]="
+                        isShowPassword ? 'fa fa-eye' : 'fa fa-eye-slash'
+                      "
+                    ></i>
+                  </button>
+                </div>
                 <div>
                   <small
                     *ngIf="

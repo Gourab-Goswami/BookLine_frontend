@@ -1,0 +1,55 @@
+.background-radial-gradient {
+  background-color: hsl(218, 41%, 15%);
+  background-image: radial-gradient(
+      circle,
+      rgb(78, 78, 78) 0%,
+      rgba(27, 27, 27, 1) 100%
+    ),
+    radial-gradient(circle, rgba(20, 135, 168, 1) 0%, rgba(27, 27, 27, 1) 100%);
+}
+.bg-glass {
+  background-color: hsla(0, 0%, 100%, 0.9) !important;
+  backdrop-filter: saturate(200%) blur(25px);
+}
+.title{
+  color: hsl(218, 81%, 95%);
+  span{
+   color: hsl(218, 81%, 75%);
+   font-size: 5rem;
+  }
+}
+.login-logo{
+  width: 100%;
+  text-align: center;
+  img{
+    width: 60%;
+    padding: 2rem;
+  }
+}
+.log-in{
+  max-width: 45%;
+}
+.login-btn:disabled {
+  background-color: #555;
+}
+small {
+  color: red;
+}
+.password-input{
+  border-right:none;
+  border-start-end-radius:0;
+  border-end-end-radius: 0;
+}
+.password-section{
+  display:flex;
+}
+.show-hide-btn{
+  background-color: #e8f0fe;
+  border: 1px solid #d7dde6;
+  border-left: none;
+  border-start-end-radius: 0.25rem;
+  border-end-end-radius: 0.25rem;
+  .fa-eye-slash {
+    opacity: 0.5;
+  }
+}

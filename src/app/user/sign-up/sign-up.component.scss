@@ -25,6 +25,13 @@
     border: 2px solid hsl(218, 81%, 75%);
     z-index: 1;
   }
+  .title{
+    color: hsl(218, 81%, 95%);
+    span{
+      color: hsl(218, 81%, 75%);
+      font-size: 5rem;
+    }
+  }
   .checked{
     padding:0 5px 0 5px;
     font-size: xx-small;
