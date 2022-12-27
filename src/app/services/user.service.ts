@@ -22,8 +22,10 @@ export class UserService {
   }
 
   //API call for user details
-  getUserDetails(id: any) {
-    return this.http.get(environment.userUrl + '/singleUser/' + id);
+  getUserDetails(id: any, email: string) {
+    return this.http.get(
+      environment.userUrl + '/singleUser/' + id + '/' + email
+    );
   }
   //API call for critics
   getCriticsDetails() {
@@ -74,6 +76,7 @@ export class UserService {
   setUserLogInData(userDetails: any) {
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('status', userDetails.status);
+    localStorage.setItem('email', userDetails.email);
     localStorage.setItem('id', userDetails._id);
     localStorage.setItem('username', userDetails.uname);
   }

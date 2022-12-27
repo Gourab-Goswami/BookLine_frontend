@@ -8,7 +8,7 @@ import {
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import { ERROR_MESSAGE, TOASTR_STATUS } from '../../constants/toastr-message';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -43,14 +43,7 @@ export class LoginComponent implements OnInit {
           Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
         ],
       ],
-      password: [
-        null,
-        [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(10),
-        ],
-      ],
+      password: [null, [Validators.required, Validators.minLength(4)]],
     });
     this.resetUserData();
   }
@@ -87,9 +80,9 @@ export class LoginComponent implements OnInit {
       },
       error: (error) => {
         if (error.status === 401) {
-          this.toastr.error('User does not exist', 'ERROR');
+          this.toastr.error(ERROR_MESSAGE.userNotExist, TOASTR_STATUS.ERROR);
         } else {
-          this.toastr.error('Could not log in. Please try again', 'ERROR');
+          this.toastr.error(ERROR_MESSAGE.logInError, TOASTR_STATUS.ERROR);
         }
         setTimeout(() => {
           this.isLoading = false;

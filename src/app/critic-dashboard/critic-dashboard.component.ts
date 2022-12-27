@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { BookService } from '../services/book.service';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { response } from 'express';
 
 @Component({
   selector: 'app-critic-dashboard',
   templateUrl: './critic-dashboard.component.html',
-  styleUrls: ['./critic-dashboard.component.css'],
+  styleUrls: ['./critic-dashboard.component.scss'],
 })
 export class CriticDashboardComponent implements OnInit {
   invitations: any;
@@ -28,9 +27,6 @@ export class CriticDashboardComponent implements OnInit {
     this.userService.getRequestsForCritic(id, status).subscribe({
       next: (res) => {
         this.invitations = res;
-      },
-      error: () => {
-        this.toastr.error('Could not fetch data', 'ERROR');
       },
     });
   }
