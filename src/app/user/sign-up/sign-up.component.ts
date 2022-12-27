@@ -7,6 +7,8 @@ import {
   FormArray,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ERROR_MESSAGE, TOASTR_STATUS } from '../../constants/toastr-message';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,6 +17,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
+  file: any;
   isSignUpSuccess = false;
   status: string = '';
   signupForm = new FormGroup({
@@ -91,6 +94,7 @@ export class SignUpComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public userService: UserService,
+    private _toastr: ToastrService,
     private router: Router
   ) {}
 
@@ -120,6 +124,7 @@ export class SignUpComponent implements OnInit {
         ],
       ],
       password: [null, [Validators.required, Validators.minLength(4)]],
+      image: [null],
     });
   }
 
@@ -149,15 +154,43 @@ export class SignUpComponent implements OnInit {
     this.checkedPreferredGenre.splice(index, 1);
   }
 
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    this.signupForm.get('image')?.setValue(file);
+  }
+
+  setFormData() {
+    const formData = new FormData();
+    formData.append('fname', this.signupForm.get('fname')?.value);
+    formData.append('lname', this.signupForm.get('lname')?.value);
+    formData.append('gender', this.signupForm.get('gender')?.value);
+    formData.append('age', this.signupForm.get('age')?.value);
+    formData.append('education', this.signupForm.get('education')?.value);
+    formData.append(
+      'education_dep',
+      this.signupForm.get('education_dep')?.value
+    );
+    formData.append(
+      'preferred_genre',
+      this.signupForm.get('preferred_genre')?.value
+    );
+    formData.append('uname', this.signupForm.get('uname')?.value);
+    formData.append('email', this.signupForm.get('email')?.value);
+    formData.append('password', this.signupForm.get('password')?.value);
+    formData.append('status', this.status);
+    formData.append('image', this.signupForm.get('image')?.value);
+    return formData;
+  }
+
   signUpUser() {
-    this.signupForm.value.status = this.status;
-    this.userService.userSignup(this.signupForm.value).subscribe(
-      (Details) => {
+    let formData = this.setFormData();
+    this.userService.userSignup(formData).subscribe({
+      next: () => {
         this.isSignUpSuccess = true;
       },
-      (err) => {
-        err = 'Sorry could not Sign Up ! ';
-      }
-    );
+      error: () => {
+        this._toastr.error(ERROR_MESSAGE.notSignUp, TOASTR_STATUS.ERROR);
+      },
+    });
   }
 }

@@ -268,7 +268,11 @@
                   </small>
                 </div>
               </div>
-
+              <input
+                (change)="onFileChange($event)"
+                type="file"
+                id="fileUpload"
+              />
               <!-- Submit button -->
               <div class="text-center">
                 <button
