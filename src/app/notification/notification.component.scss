@@ -1,0 +1,37 @@
+@import "../constants/color.scss";
+
+.accept-btn{
+    background-color: $accept_btn;
+    border: none;
+    border-radius: 20px;
+    margin: 0.5rem;
+}
+.decline-btn{
+    background-color: $close_btn;
+    border: none;
+    border-radius: 20px;
+    margin: 0.5rem;
+}
+.notification-card{
+    border-radius: 10px;
+    background-color: $section;
+    &:hover{
+        transform:scale(1.03);
+        transition: 0.5s;
+    }
+}
+a{
+    cursor: pointer;
+}
+table{
+    margin: auto;
+    tr td{
+        border: 1px solid black;
+        padding: 1rem;
+        &:first-child{
+            width:8rem;
+            text-align: right;
+            padding-right: 1rem;
+        }
+    }
+}

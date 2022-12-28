@@ -127,21 +127,26 @@
               >
                 <div>
                   <i class="fa fa-bell fa-lg mb-1"></i>
-                  <span class="badge rounded-pill badge-notification bg-primary"
-                    >11</span
+                  <span
+                    class="badge rounded-pill badge-notification bg-primary"
+                    *ngIf="invitationCount > 0"
+                    >{{ invitationCount }}</span
                   >
                 </div>
                 Notification
               </a>
               <!-- Notification menu -->
-              <ul class="dropdown-menu" aria-labelledby="notification">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
+              <ul
+                class="dropdown-menu notification-card"
+                aria-labelledby="notification"
+              >
+                <li class="p-3">
+                  <div>
+                    <app-notification
+                      [userId]="userId"
+                      (invitationCount)="getInvitationCount($event)"
+                    ></app-notification>
+                  </div>
                 </li>
               </ul>
             </li>

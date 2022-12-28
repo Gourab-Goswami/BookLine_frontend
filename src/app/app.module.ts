@@ -15,8 +15,10 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
 import { HeaderComponent } from './header/header.component';
 import { LibraryComponent } from './library/library.component';
 import { AlertComponent } from './alert/alert.component';
-import { CriticDashboardComponent } from './critic-dashboard/critic-dashboard.component';
+import { CriticDashboardComponent } from './critic/critic-dashboard/critic-dashboard.component';
 import { AddCriticComponent } from './publisher/add-critic/add-critic.component';
+import { NotificationComponent } from './notification/notification.component';
+import { ModalModule } from './modals';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,7 @@ import { AddCriticComponent } from './publisher/add-critic/add-critic.component'
     AlertComponent,
     CriticDashboardComponent,
     AddCriticComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { AddCriticComponent } from './publisher/add-critic/add-critic.component'
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ModalModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

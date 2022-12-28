@@ -1,32 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { BookService } from '../services/book.service';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { ModalService } from '../modals';
 
 @Component({
-  selector: 'app-critic-dashboard',
-  templateUrl: './critic-dashboard.component.html',
-  styleUrls: ['./critic-dashboard.component.scss'],
+  selector: 'app-notification',
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.scss'],
 })
-export class CriticDashboardComponent implements OnInit {
+export class NotificationComponent implements OnInit {
   invitations: any;
-  criticId: any;
+  modalDetails: any;
+
+  @Input()
+  userId!: string;
+
+  @Output()
+  invitationCount = new EventEmitter<number>();
 
   constructor(
-    private bookService: BookService,
     private userService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private modal: ModalService
   ) {}
 
   ngOnInit(): void {
-    this.criticId = localStorage.getItem('id');
-    this.getInvitationList(this.criticId, 'all');
+    this.getInvitationList(this.userId, 'pending');
   }
 
   getInvitationList(id: any, status: string) {
     this.userService.getRequestsForCritic(id, status).subscribe({
       next: (res) => {
         this.invitations = res;
+        this.invitationCount.emit(this.invitations?.length);
       },
     });
   }
@@ -37,7 +43,7 @@ export class CriticDashboardComponent implements OnInit {
       publisher: requestDetails.publisher,
       status: action,
     };
-    this.userService.requestAction(this.criticId, payload).subscribe({
+    this.userService.requestAction(this.userId, payload).subscribe({
       next: () => {
         if (action === 'accepted') {
           this.toastr.success('Request Accepted', 'SUCCESS');
@@ -50,5 +56,10 @@ export class CriticDashboardComponent implements OnInit {
         this.toastr.error('Something went wrong. please try again', 'ERROR');
       },
     });
+  }
+
+  openRequest(requestDetail: string, request: any) {
+    this.modalDetails = request;
+    this.modal.open(requestDetail);
   }
 }
