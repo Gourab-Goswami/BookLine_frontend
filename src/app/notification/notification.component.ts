@@ -43,6 +43,9 @@ export class NotificationComponent implements OnInit {
       publisher: requestDetails.publisher,
       status: action,
     };
+    let index = this.invitations
+      .map((e: any) => e._id)
+      .indexOf(requestDetails._id);
     this.userService.requestAction(this.userId, payload).subscribe({
       next: () => {
         if (action === 'accepted') {
@@ -51,6 +54,8 @@ export class NotificationComponent implements OnInit {
         if (action === 'denied') {
           this.toastr.success('Successfully removed request', 'SUCCESS');
         }
+        this.invitations.splice(1, index);
+        this.invitationCount.emit(this.invitations?.length);
       },
       error: () => {
         this.toastr.error('Something went wrong. please try again', 'ERROR');
