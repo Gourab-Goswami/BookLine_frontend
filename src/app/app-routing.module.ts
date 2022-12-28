@@ -9,7 +9,7 @@ import { BooksComponent } from './books/books.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { LibraryComponent } from './library/library.component';
-import { CriticDashboardComponent } from './critic-dashboard/critic-dashboard.component';
+import { CriticDashboardComponent } from './critic/critic-dashboard/critic-dashboard.component';
 import { AddCriticComponent } from './publisher/add-critic/add-critic.component';
 
 const routes: Routes = [

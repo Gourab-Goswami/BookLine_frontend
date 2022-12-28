@@ -12,9 +12,12 @@ export class HeaderComponent implements OnInit {
   isCritic: Boolean = false;
   isReader: Boolean = false;
   redirectionPath!: string;
+  userId: any;
+  invitationCount: number = 0;
   constructor(public userService: UserService, private _router: Router) {}
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem('id');
     this.isUserLoggedIn = this.userService.userLoggedIn() ? true : false;
     let userStatus = this.userService.localUserStatus();
     if (userStatus) {
@@ -42,6 +45,10 @@ export class HeaderComponent implements OnInit {
     userStatus === 'publisher'
       ? (this.redirectionPath = '/books')
       : (this.redirectionPath = '/library');
+  }
+
+  getInvitationCount(event: any) {
+    this.invitationCount = event;
   }
 
   logOut() {
