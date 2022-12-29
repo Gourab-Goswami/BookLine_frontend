@@ -91,7 +91,11 @@
               </a>
             </li>
             <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isCritic">
-              <a class="nav-link">
+              <a
+                class="nav-link"
+                routerLink="/tasks"
+                [ngClass]="[route === '/tasks' ? 'active' : '']"
+              >
                 <div>
                   <i class="fa fa-tasks fa-lg mb-1"></i>
                 </div>
