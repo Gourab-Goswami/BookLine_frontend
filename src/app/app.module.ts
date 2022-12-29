@@ -19,6 +19,7 @@ import { CriticDashboardComponent } from './critic/critic-dashboard/critic-dashb
 import { AddCriticComponent } from './publisher/add-critic/add-critic.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ModalModule } from './modals';
+import { TaskComponent } from './critic/task/task.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { ModalModule } from './modals';
     CriticDashboardComponent,
     AddCriticComponent,
     NotificationComponent,
+    TaskComponent,
   ],
   imports: [
     BrowserModule,
