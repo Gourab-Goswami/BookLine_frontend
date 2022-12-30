@@ -20,6 +20,7 @@ import { AddCriticComponent } from './publisher/add-critic/add-critic.component'
 import { NotificationComponent } from './notification/notification.component';
 import { ModalModule } from './modals';
 import { TaskComponent } from './critic/task/task.component';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +36,7 @@ import { TaskComponent } from './critic/task/task.component';
     AddCriticComponent,
     NotificationComponent,
     TaskComponent,
+    DateAgoPipe,
   ],
   imports: [
     BrowserModule,
