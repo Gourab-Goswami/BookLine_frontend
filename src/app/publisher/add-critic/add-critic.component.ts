@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { catchError, of } from 'rxjs';
 import { BookService } from 'src/app/services/book.service';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { UpperCasePipe } from '@angular/common';
+import {
+  ERROR_MESSAGE,
+  SUCCESS_MESSAGE,
+  TOASTR_STATUS,
+} from 'src/app/constants/toastr-message';
 
 @Component({
   selector: 'app-add-critic',
@@ -75,11 +78,21 @@ export class AddCriticComponent implements OnInit {
       };
 
       this.userService.addBookToCritic(this.userId, requestData).subscribe({
-        next: () => {
-          this.toastr.success('Request has been sent', 'SUCCESS');
+        next: (response) => {
+          if (response === 'Request has been sent previously') {
+            this.toastr.warning(
+              ERROR_MESSAGE.requestExist,
+              TOASTR_STATUS.WARNING
+            );
+          } else {
+            this.toastr.success(
+              SUCCESS_MESSAGE.requestSent,
+              TOASTR_STATUS.SUCCES
+            );
+          }
         },
         error: () => {
-          this.toastr.error('Please try again', 'ERROR');
+          this.toastr.error(ERROR_MESSAGE.requestError, TOASTR_STATUS.ERROR);
         },
       });
     }

@@ -24,7 +24,6 @@ export class DateAgoPipe implements PipeTransform {
       let counter;
       for (const i in intervals) {
         counter = Math.round(seconds / intervals[i]);
-        console.log(counter, intervals[i]);
         if (counter > 0)
           if (counter === 1) {
             return counter + ' ' + i + ' ago'; // singular (1 day ago)

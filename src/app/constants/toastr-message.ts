@@ -6,6 +6,8 @@ export const ERROR_MESSAGE = {
   getDataError: 'Unable to fetch data',
   deleteError: 'Unable to delete, Please try again',
   addBook: 'Unable to add book, Please try again',
+  requestError: 'Unable to send request',
+  requestExist: 'Request has been sent previously',
 };
 
 export const SUCCESS_MESSAGE = {

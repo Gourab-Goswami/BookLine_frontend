@@ -2,6 +2,11 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { ModalService } from '../modals';
+import {
+  TOASTR_STATUS,
+  ERROR_MESSAGE,
+  SUCCESS_MESSAGE,
+} from '../constants/toastr-message';
 
 @Component({
   selector: 'app-notification',
@@ -49,16 +54,22 @@ export class NotificationComponent implements OnInit {
     this.userService.requestAction(this.userId, payload).subscribe({
       next: () => {
         if (action === 'accepted') {
-          this.toastr.success('Request Accepted', 'SUCCESS');
+          this.toastr.success(
+            SUCCESS_MESSAGE.requestAccept,
+            TOASTR_STATUS.SUCCES
+          );
         }
         if (action === 'denied') {
-          this.toastr.success('Successfully removed request', 'SUCCESS');
+          this.toastr.success(
+            SUCCESS_MESSAGE.requestDecline,
+            TOASTR_STATUS.SUCCES
+          );
         }
-        this.invitations.splice(1, index);
+        this.invitations.splice(index, 1);
         this.invitationCount.emit(this.invitations?.length);
       },
       error: () => {
-        this.toastr.error('Something went wrong. please try again', 'ERROR');
+        this.toastr.error(ERROR_MESSAGE.tryAgain, TOASTR_STATUS.ERROR);
       },
     });
   }
