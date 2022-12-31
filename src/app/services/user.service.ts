@@ -61,6 +61,13 @@ export class UserService {
     );
   }
 
+  //API to get all the request that publisher sent
+  getAssignedCritics(id: string | number) {
+    return this.http.get(
+      environment.baseUrl + '/publisher/getAssignedCritics/' + id
+    );
+  }
+
   requestAction(id: any, response: any) {
     return this.http.post(
       environment.baseUrl + '/critic/updateRequestStatus/' + id,
