@@ -39,7 +39,11 @@
         </ul>
 
         <div class="col-12 col-md-4 text-center">
-          <a class="f-n-hover btn btn-info btn-raised px-4 py-25 w-75 text-600"
+          <a
+            class="f-n-hover btn btn-info btn-raised px-4 py-25 w-75 text-600"
+            data-bs-toggle="modal"
+            data-bs-target="#addReview"
+            (click)="setReviewForm(task.form)"
             >Start Review</a
           >
         </div>
@@ -52,6 +56,61 @@
         Total Task Charge: <i class="fa fa-inr ps-2" aria-hidden="true"></i>
         {{ totalCharge }}
       </h4>
+    </div>
+  </div>
+</div>
+
+<!--- form modal-->
+<div
+  class="modal fade"
+  id="addReview"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Review</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- inout for Book Name -->
+        <div *ngFor="let form of formToSubmit?.question_details">
+          <div class="mb-3">
+            <label class="col-form-label">{{ form.question }}</label>
+            <div *ngIf="form.type === 'input'">
+              <input type="{{ form.type }}" class="form-control" />
+            </div>
+            <div *ngIf="form.type !== 'input'">
+              <div *ngFor="let option of form?.options">
+                <input
+                  class="me-2"
+                  type="{{ form.type }}"
+                  name="option"
+                  value="{{ option }}"
+                />
+                <span>{{ option.op }} : {{ option.ans }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button class="btn btn-dark" data-bs-dismiss="modal">Submit</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

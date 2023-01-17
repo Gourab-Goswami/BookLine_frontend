@@ -1,5 +1,55 @@
-<div class="container" style="margin-top: 8rem">
-  <div class="m-4 mt-4">
+<div [ngClass]="[toggleMenu ? 'menu-bar' : 'icon-bar']">
+  <ul class="list-group options" *ngIf="toggleMenu">
+    <li
+      class="list-group-item menu-btn"
+      [ngClass]="[isShowForm ? '' : 'active']"
+      (click)="isShowForm = false"
+    >
+      <div class="menu-text">
+        <span>Assign Criric</span>
+      </div>
+    </li>
+    <li
+      class="list-group-item menu-btn"
+      [ngClass]="[!isShowForm ? '' : 'active']"
+      (click)="isShowForm = true"
+    >
+      <div class="menu-text">
+        <span>My Forms</span>
+      </div>
+    </li>
+    <li class="list-group-item menu-btn" (click)="toggleMenu = false">
+      <div class="menu-text">
+        <span
+          ><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+          Collapse</span
+        >
+      </div>
+    </li>
+  </ul>
+  <ul class="list-group options" *ngIf="!toggleMenu">
+    <li
+      class="list-group-item menu-btn"
+      [ngClass]="[isShowForm ? '' : 'active']"
+      (click)="isShowForm = false"
+    >
+      <i class="fa fa-user-plus" aria-hidden="true"></i>
+    </li>
+    <li
+      class="list-group-item menu-btn"
+      [ngClass]="[!isShowForm ? '' : 'active']"
+      (click)="isShowForm = true"
+    >
+      <i class="fa fa-file-text" aria-hidden="true"></i>
+    </li>
+    <li class="list-group-item menu-btn" (click)="toggleMenu = true">
+      <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+    </li>
+  </ul>
+</div>
+<!---Content-->
+<div class="container">
+  <div class="m-4 mt-4" *ngIf="!isShowForm">
     <table class="table">
       <thead class="table-dark">
         <tr>
@@ -9,7 +59,16 @@
           <th>Pages</th>
           <th>INR</th>
           <th>Choose Critic</th>
-          <th>Action</th>
+          <th>Add Form</th>
+          <th>
+            Action
+            <em
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+              title="Tooltip on right"
+              ><i class="fa fa-question-circle"></i
+            ></em>
+          </th>
         </tr>
       </thead>
       <tr *ngFor="let book of books">
@@ -30,11 +89,220 @@
           </select>
         </td>
         <td>
-          <button (click)="sendRequestToCritic(book)">
+          <select class="form-control" (change)="changeForm($event)">
+            <option disabled selected>Select Form</option>
+            <option *ngFor="let form of forms" value="{{ form.form_name }}">
+              {{ form.form_name }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <button (click)="sendRequestToCritic(book)" title="Disabled tooltip">
             <span>Send Request</span>
           </button>
         </td>
       </tr>
     </table>
+  </div>
+
+  <!--Form content-->
+  <div *ngIf="isShowForm">
+    <button
+      class="btn btn-dark mt-3"
+      data-bs-toggle="modal"
+      data-bs-target="#addForm"
+    >
+      Add New Form
+    </button>
+    <div class="card-deck form mt-5 mb-4" *ngFor="let form of forms">
+      <div class="question-header">
+        <h4>{{ form.form_name | titlecase }}</h4>
+        <em
+          class="add-icon"
+          data-bs-toggle="modal"
+          data-bs-target="#addquestion"
+          (click)="setFormName(form.form_name)"
+          ><i class="fa fa-plus"></i
+        ></em>
+      </div>
+      <div class="row" *ngIf="form.question_details?.length">
+        <div
+          class="col-3 card question m-3"
+          *ngFor="let questions of form.question_details"
+        >
+          <div class="card-body">
+            <h5 class="card-title">{{ questions.question }}</h5>
+            <div class="card-text" *ngIf="questions?.type !== 'input'">
+              <div *ngFor="let choice of questions?.options">
+                <input
+                  type="{{ questions?.type }}"
+                  name="{{ questions?.type }}"
+                />
+                {{ choice.op }}:
+                {{ choice.ans }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Modals-->
+
+<!--Add form Modal-->
+<div
+  class="modal fade"
+  id="addForm"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Form</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- inout for Book Name -->
+        <div class="mb-3">
+          <label class="col-form-label">Form Name:</label>
+          <input type="text" class="form-control" [(ngModel)]="newFormName" />
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            class="btn btn-dark"
+            data-bs-dismiss="modal"
+            (click)="createNewForm()"
+          >
+            Create Form
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--add questions modal-->
+<div
+  class="modal fade"
+  id="addquestion"
+  tabindex="-1"
+  aria-labelledby="questions"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="questions">Add New Question</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- inout for Book Name -->
+        <form (ngSubmit)="addQuestions()" [formGroup]="addQuestion">
+          <div class="mb-3">
+            <label class="col-form-label">Add Question</label>
+            <input
+              type="text"
+              formControlName="question"
+              class="form-control"
+              placeholder="Add Question"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="col-form-label">Choose Question Type</label>
+            <select
+              formControlName="type"
+              class="form-control selectpicker"
+              data-size="5"
+              (change)="checkQuestionType()"
+            >
+              <option selected disabled>Choose</option>
+              <option value="input">Input</option>
+              <option value="radio">Radio</option>
+              <option value="checkbox">Checkbox</option>
+            </select>
+            <small
+              *ngIf="
+                addQuestion.get('type')!.hasError('required') &&
+                addQuestion.get('type')!.touched
+              "
+            >
+              Question type is required !
+            </small>
+          </div>
+          <div class="mb-3" *ngIf="!isInputType">
+            <div *ngFor="let choice of options">
+              <div class="show-new-option">
+                <input type="{{ this.addQuestion.value.type }}" name="choice" />
+                {{ choice.op }}: {{ choice.ans }}
+                <i
+                  class="fa fa-times ms-2"
+                  aria-hidden="true"
+                  (click)="removeOption(choice)"
+                ></i>
+              </div>
+            </div>
+            <div class="option-input-field">
+              <div class="choice-option">
+                <span>Choice Option</span
+                ><input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="choiceOption"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+              <div class="choice-text">
+                <span>Choice text</span
+                ><input
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="choiceText"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+            </div>
+            <a class="btn btn-primary" (click)="addOptions()"> Add Choice </a>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              (click)="removeFormName()"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              class="btn btn-dark"
+              data-bs-dismiss="modal"
+              [disabled]="addQuestion.invalid"
+            >
+              Add Question
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

@@ -75,6 +75,18 @@
               </a>
             </li>
             <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isPublisher">
+              <a
+                class="nav-link"
+                routerLink="/sent-requests"
+                [ngClass]="[route === '/sent-requests' ? 'active' : '']"
+              >
+                <div>
+                  <i class="fa fa-paper-plane fa-lg mb-1"></i>
+                </div>
+                Reqests
+              </a>
+            </li>
+            <li class="nav-item text-center mx-2 mx-lg-1" *ngIf="isPublisher">
               <a class="nav-link">
                 <div>
                   <i class="fa fa-bar-chart fa-lg mb-1"></i>
