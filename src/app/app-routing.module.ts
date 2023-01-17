@@ -12,6 +12,7 @@ import { LibraryComponent } from './library/library.component';
 import { CriticDashboardComponent } from './critic/critic-dashboard/critic-dashboard.component';
 import { AddCriticComponent } from './publisher/add-critic/add-critic.component';
 import { TaskComponent } from './critic/task/task.component';
+import { SentRequestsComponent } from './publisher/sent-requests/sent-requests.component';
 
 const routes: Routes = [
   //setting "/login" path as default
@@ -40,6 +41,11 @@ const routes: Routes = [
   {
     path: 'add-critic',
     component: AddCriticComponent,
+    canActivate: [PublisherAuthGuard],
+  },
+  {
+    path: 'sent-requests',
+    component: SentRequestsComponent,
     canActivate: [PublisherAuthGuard],
   },
   {

@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div>
+        <div class="mt-2">
+          <table class="text-center">
+            <thead>
+              <tr class="label">
+                <th class="text-center"><span>Critic</span></th>
+                <th><span>Email</span></th>
+                <th><span>Created</span></th>
+                <th><span>Status</span></th>
+                <th><span>Book Name</span></th>
+                <th><span>Form</span></th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let request of requests" class="list">
+                <td class="critic">
+                  <span class="user-icon">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i
+                  ></span>
+                  <div class="user-initial">
+                    <a>{{ request.critic_name }}</a>
+                    <span><i class="fa fa-rupee"></i>{{ request.INR }}</span>
+                  </div>
+                </td>
+                <td>{{ request.critic_email }}</td>
+                <td>{{ request.updated | date }}</td>
+                <td>
+                  <span class="ps-2 pe-2 status" [ngClass]="request.status">{{
+                    request.status | titlecase
+                  }}</span>
+                </td>
+                <td>
+                  <span>{{ request.bookToReview_name | titlecase }}</span>
+                </td>
+                <td>
+                  <span>{{ request.form?.form_name | titlecase }}</span>
+                </td>
+                <td>
+                  <button class="btn btn-primary m-1">
+                    <i class="fa fa-comments-o"></i>
+                  </button>
+                  <button
+                    class="btn btn-danger m-1"
+                    (click)="deleteRequest(request._id)"
+                  >
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div *ngIf="!requests?.length" class="text-center mt-3 no-request">
+            <h3>No request present</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

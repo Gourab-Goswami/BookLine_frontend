@@ -62,10 +62,57 @@ export class UserService {
   }
 
   //API to get all the request that publisher sent
-  getAssignedCritics(id: string | number) {
+  getPublisherRequests(id: string | number | null) {
     return this.http.get(
       environment.baseUrl + '/publisher/getAssignedCritics/' + id
     );
+  }
+
+  deleteRequestForPublisher(requestId: any, userId: string | number | null) {
+    return this.http.post(
+      environment.baseUrl + '/publisher/deleteRequest/' + userId,
+      requestId
+    );
+  }
+
+  //payload(form) ---------
+  //   {
+  //     "form_id": 1,
+  //     "form_name": "test form",
+  //     "question_details": [
+  //       {
+  //         "question": "Is this a test form?",
+  //         "type": "input",
+  //         "options": [],
+  //       },
+  //   {
+  //   "question": "Is this a test form 3?",
+  //   "type": "checkbox",
+  //   "options": [{"op":"a","ans":"yes"},{"op":"b","ans":"maybe"}],
+  // },
+  // {
+  //   "question": "Is this a test form 5?",
+  //   "type": "single_select",
+  //   "options": [{"op":"a","ans":"yes"},{"op":"b","ans":"no"}],
+  // }
+  //     ]
+  // }
+  addFormForPublisher(id: string | number, form: any) {
+    return this.http.post(
+      environment.baseUrl + '/publisher/addForm/' + id,
+      form
+    );
+  }
+
+  addQuestionsForPublisher(id: string | number, form: any) {
+    return this.http.post(
+      environment.baseUrl + '/publisher/addFormQuestions/' + id,
+      form
+    );
+  }
+
+  getFormsForPublisher(id: string | number) {
+    return this.http.get(environment.baseUrl + '/publisher/getForm/' + id);
   }
 
   requestAction(id: any, response: any) {

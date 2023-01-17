@@ -1,0 +1,48 @@
+@import '../../constants/color.scss';
+
+table{
+	width:100%;
+}
+.label{
+    height: 4rem;
+    box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px, rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+}
+.critic {
+    display: flex;
+    align-items: center;
+}
+.user-icon{
+    margin: 1rem;
+	font-size: 4.5rem;
+}
+.user-initial {
+    display: flex;
+    flex-direction: column;
+}
+.list{
+	margin-bottom: 2rem;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.accepted{
+background-color: $accept_btn;
+color:$white;
+}
+.denied{
+	background-color: $close_btn;
+	color:$white;
+}
+.invited{
+	background-color: $wait_color;
+	color:$black;
+}
+.invoiced{
+	background-color: $blue_btn;
+	color:$black;
+}
+.done{
+	background-color: $done_color;
+	color:$black;
+}
+.no-request{
+	color: $gray;
+}

@@ -8,6 +8,7 @@ export const ERROR_MESSAGE = {
   addBook: 'Unable to add book, Please try again',
   requestError: 'Unable to send request',
   requestExist: 'Request has been sent previously',
+  inProgressRequest: 'Unable to delete. Request is under progress',
 };
 
 export const SUCCESS_MESSAGE = {
@@ -18,6 +19,15 @@ export const SUCCESS_MESSAGE = {
   requestSent: 'Request has been sent',
   requestAccept: 'Request has been Accepted',
   requestDecline: 'Request has been declined',
+  removed: 'Successfully removed',
+  formAdded: 'Form has been created',
+  questionAdded: 'Question has been added successfully',
+};
+
+export const WARNING_MESSAGE = {
+  duplicateName: 'Name already present',
+  choiceLimit: 'Choice limit is 10',
+  atleastTwoChoice: 'Add at least two choices',
 };
 
 export const TOASTR_STATUS = {

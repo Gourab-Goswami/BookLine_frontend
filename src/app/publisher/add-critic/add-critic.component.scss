@@ -1,0 +1,93 @@
+@import "../../constants/color.scss";
+
+.menu-bar {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  position: fixed;
+  background-color: $light_black;
+  height: 100%;
+  border-radius: 0;
+  transition: 0.3s;
+  .list-group-item {
+    padding: 1rem 1rem 1rem 1.8rem;
+  }
+  .menu-btn {
+    background-color: #32373b00;
+    color: $white;
+    height: 3.375rem;
+    &:hover {
+      background-color: $blue_btn;
+      cursor: pointer;
+    }
+    .menu-text {
+      min-width: 5.875rem;
+    }
+    span {
+      padding: 2px;
+      text-align: center;
+    }
+  }
+  .active {
+    background: $blue_btn;
+  }
+}
+.icon-bar {
+  display: flex;
+  flex-direction: column;
+  width: 4rem;
+  position: fixed;
+  background-color: $light_black;
+  height: 100%;
+  border-radius: 0;
+  transition: 0.5s;
+  .menu-btn {
+    background-color: #32373b00;
+    color: $white;
+    font-size: 1.5rem;
+    text-align: center;
+    &:hover {
+      background-color: $blue_btn;
+      cursor: pointer;
+    }
+  }
+  .active {
+    background: $blue_btn;
+  }
+}
+.form {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  padding: 1rem;
+}
+.question {
+  width: 24rem;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  &:hover {
+    transform: scale(1.02);
+    transition: 0.3s;
+    cursor: pointer;
+  }
+}
+.question-header {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  .add-icon {
+    font-size: 1.5rem;
+    &:hover {
+      cursor: pointer;
+      color: $blue_btn;
+    }
+  }
+}
+.option-input-field {
+  display: flex;
+  margin: 2rem 0 1rem 0;
+  .choice-option {
+    width: 25%;
+    margin-right: 1rem;
+  }
+}

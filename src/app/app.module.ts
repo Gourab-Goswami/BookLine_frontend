@@ -21,6 +21,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { ModalModule } from './modals';
 import { TaskComponent } from './critic/task/task.component';
 import { DateAgoPipe } from './pipes/date-ago.pipe';
+import { SentRequestsComponent } from './publisher/sent-requests/sent-requests.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { DateAgoPipe } from './pipes/date-ago.pipe';
     NotificationComponent,
     TaskComponent,
     DateAgoPipe,
+    SentRequestsComponent,
   ],
   imports: [
     BrowserModule,
