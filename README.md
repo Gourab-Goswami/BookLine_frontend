@@ -1,6 +1,6 @@
 1. Clone the repo
    ```sh
-   git clone https://github.com/Gourab-Goswami/book-comet-coding-challenge.git
+   git clone https://github.com/Gourab-Goswami/BookLine_frontend.git
    ```
 2. Install NPM packages
    ```sh
